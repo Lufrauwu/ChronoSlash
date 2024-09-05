@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour
     {
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
-        Debug.Log(viewDir);
 
         float horizontalInput = InputManager.GetInstance().MovementInput().x;
         float verticalInput = InputManager.GetInstance().MovementInput().y;
