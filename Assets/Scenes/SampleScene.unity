@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 235692442}
   - component: {fileID: 235692441}
   - component: {fileID: 235692440}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1459,7 +1459,7 @@ GameObject:
   - component: {fileID: 906234175}
   - component: {fileID: 906234174}
   - component: {fileID: 906234173}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8051,15 +8051,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   wallRunForce: 200
   maxWallRunTime: 1.5
+  wallJumpUpForce: 12
+  wallJumpSideForce: 4
+  exitWallTime: 0.4
   wallcheckDisance: 0.7
   minJumpHeight: 2
   playerHeight: 2.3
+  useGravity: 0
+  gravityCounterForce: 0.2
   orientation: {fileID: 2228426640010308143}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

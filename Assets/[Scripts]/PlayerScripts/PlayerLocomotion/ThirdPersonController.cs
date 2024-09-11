@@ -47,6 +47,9 @@ public class ThirdPersonController : MonoBehaviour
 
     private void PlayerStateChange(PLAYER_STATES _newPlayerStates)
     {
+        
+        currenPlayerState = _newPlayerStates;
+        
         switch (_newPlayerStates)
         {
             case PLAYER_STATES.WALKING:
@@ -63,17 +66,23 @@ public class ThirdPersonController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.freezeRotation = true;
-        currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
-        SubscribeToPlayerState();
         
         ResetJump();
     }
 
+    private void Start()
+    {
+        currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
+        SubscribeToPlayerState();
+
+    }
+
     private void Update()
     {
-        Debug.Log(PlayerStates.GetInstance().GetCurrentPlayerState());
+        Debug.Log("En Third Person controller el estado es: " + PlayerStates.GetInstance().GetCurrentPlayerState());
         MyInput();
         SpeedControl();
+        StateHandler();
     }
 
     private void FixedUpdate()
