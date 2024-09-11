@@ -19,7 +19,7 @@ public class WallRunning : MonoBehaviour
     private float verticalInput;
     
     private bool exitingWall;
-    public float exitWallTime;
+    [SerializeField] private float exitWallTime;
     private float exitWallTimer;
 
     [Header("Detection")] 
@@ -31,46 +31,22 @@ public class WallRunning : MonoBehaviour
     private bool wallLeft;
     private bool wallRight;
     
-    public bool useGravity;
-    public float gravityCounterForce;
+    [SerializeField] private bool useGravity;
+    [SerializeField] private float gravityCounterForce;
     
     
     [Header("References")]
     [SerializeField] private Transform orientation;
     private Rigidbody rigidbody;
     private ThirdPersonController thirdPersonController;
-    private PLAYER_STATES currentPlayerState;
     
     
-    private void SubscribeToPlayerState()
-    {
-        PlayerStates.GetInstance().OnPlayerStateChanged += PlayerStateChange;
-        PlayerStateChange(PlayerStates.GetInstance().GetCurrentPlayerState());
-    }
-    
-    private void PlayerStateChange(PLAYER_STATES _newPlayerStates)
-    {
-        
-        currentPlayerState = _newPlayerStates;
-        
-        switch (_newPlayerStates)
-        {
-            case PLAYER_STATES.WALKING:
-                //StopWallRunning();
-                break;
-            case PLAYER_STATES.WALLRUNNING:
-                //WallRunningMovement();
-                break;
-        }
-    }
+
     
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         thirdPersonController = GetComponent<ThirdPersonController>();
-        currentPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
-        SubscribeToPlayerState();
-
     }
 
 
@@ -83,7 +59,7 @@ public class WallRunning : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentPlayerState == PLAYER_STATES.WALLRUNNING)
+        if (thirdPersonController.wallrunning)
         {
             WallRunningMovement();
         }
@@ -98,7 +74,7 @@ public class WallRunning : MonoBehaviour
         Debug.DrawRay(raycastOrigin, -orientation.right * wallcheckDisance, Color.blue);
     }
 
-    private bool AboceGround()
+    private bool AboveGround()
     {
         Vector3 raycastOrigin = transform.position + Vector3.up * (playerHeight * 0.5f);
         return !Physics.Raycast(raycastOrigin, Vector3.down, minJumpHeight, groundLayer);
@@ -109,35 +85,44 @@ public class WallRunning : MonoBehaviour
         horizontalInput = InputManager.GetInstance().MovementInput().x;
         verticalInput = InputManager.GetInstance().MovementInput().y;
 
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboceGround())
+        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
         {
-            if (currentPlayerState != PLAYER_STATES.WALLRUNNING)
+            if (!thirdPersonController.wallrunning)
             {
                 StartWallRunning();
-
-                if (InputManager.GetInstance().JumpInput())
-                {
-                    WallJump();
-                }
             }
-            else if (exitingWall)
+            if (wallRunTimer > 0)
+                wallRunTimer -= Time.deltaTime;
+                
+            if(wallRunTimer <= 0 && thirdPersonController.wallrunning)
             {
-                if (currentPlayerState == PLAYER_STATES.WALLRUNNING)
-                    StopWallRunning();
-
-                if (exitWallTimer > 0)
-                    exitWallTimer -= Time.deltaTime;
-
-                if (exitWallTimer <= 0)
-                    exitingWall = false;
+                exitingWall = true;
+                exitWallTimer = exitWallTime;
             }
+
+            if (InputManager.GetInstance().JumpInput())
+            {
+                WallJump();
+            }
+        }
+        
+        else if (exitingWall)
+        {
+            if (thirdPersonController.wallrunning)
+                StopWallRunning();
+
+            if (exitWallTimer > 0)
+                exitWallTimer -= Time.deltaTime;
+
+            if (exitWallTimer <= 0)
+                exitingWall = false;
+        }
             
-            else
+        else
+        {
+            if (thirdPersonController.wallrunning)
             {
-                if (currentPlayerState == PLAYER_STATES.WALLRUNNING)
-                {
-                    StopWallRunning();
-                }
+                StopWallRunning();
             }
         }
     }
@@ -145,8 +130,11 @@ public class WallRunning : MonoBehaviour
     private void StartWallRunning()
     {
         Debug.Log("StartWallRunning");
-        PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALLRUNNING);
-        currentPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
+        thirdPersonController.wallrunning = true;
+
+        wallRunTimer = maxWallRunTime;
+
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
     }
 
     private void WallRunningMovement()
@@ -175,7 +163,8 @@ public class WallRunning : MonoBehaviour
     private void StopWallRunning()
     {
         Debug.Log("DEJÓ");
-        PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
+        thirdPersonController.wallrunning = false;
+        //PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
 
     }
 

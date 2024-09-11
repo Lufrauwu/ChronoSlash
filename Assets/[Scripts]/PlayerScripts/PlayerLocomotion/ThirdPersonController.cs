@@ -53,10 +53,8 @@ public class ThirdPersonController : MonoBehaviour
         switch (_newPlayerStates)
         {
             case PLAYER_STATES.WALKING:
-                wallrunning = false;
                 break;
             case PLAYER_STATES.WALLRUNNING:
-                wallrunning = true;
                 break;
         }
     }
@@ -124,11 +122,13 @@ public class ThirdPersonController : MonoBehaviour
         if (wallrunning)
         {
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALLRUNNING);
+            currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
             runSpeed = wallRunSpeed;
         }
-        else
+        else if(grounded)
         {
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
+            currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
             runSpeed = 7;
         }
     }

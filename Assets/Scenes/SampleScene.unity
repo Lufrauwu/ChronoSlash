@@ -7789,7 +7789,7 @@ PrefabInstance:
     - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: jumpForce
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
@@ -7806,6 +7806,11 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 2228426640010308143}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: wallrunning
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: jumpCooldown
@@ -8056,15 +8061,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallRunForce: 200
-  maxWallRunTime: 1.5
+  maxWallRunTime: 3
   wallJumpUpForce: 12
-  wallJumpSideForce: 4
-  exitWallTime: 0.4
+  wallJumpSideForce: 7
+  exitWallTime: 0.2
   wallcheckDisance: 0.7
   minJumpHeight: 2
   playerHeight: 2.3
-  useGravity: 0
-  gravityCounterForce: 0.2
+  useGravity: 1
+  gravityCounterForce: 3.78
   orientation: {fileID: 2228426640010308143}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
