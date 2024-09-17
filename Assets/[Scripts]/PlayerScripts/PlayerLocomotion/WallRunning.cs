@@ -54,7 +54,6 @@ public class WallRunning : MonoBehaviour
     {
         CheckWall();
         StateMachine();
-        Debug.Log("En WallRunning el estado es: " + PlayerStates.GetInstance().GetCurrentPlayerState());
     }
 
     private void FixedUpdate()
@@ -129,7 +128,6 @@ public class WallRunning : MonoBehaviour
 
     private void StartWallRunning()
     {
-        Debug.Log("StartWallRunning");
         thirdPersonController.wallrunning = true;
 
         wallRunTimer = maxWallRunTime;
@@ -162,7 +160,6 @@ public class WallRunning : MonoBehaviour
 
     private void StopWallRunning()
     {
-        Debug.Log("DEJÓ");
         thirdPersonController.wallrunning = false;
         //PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
 

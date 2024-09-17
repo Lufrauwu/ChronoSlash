@@ -7,18 +7,19 @@ public class ThirdPersonController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private float runAcceleration = .25f;
-    [SerializeField] private float runSpeed = 4f;
     
     [Header("Movement")]
-
     [SerializeField] private float groundDrag;
-
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airMultiplier;
     [SerializeField] private bool readyToJump;
     [SerializeField] private float wallRunSpeed;
+    [SerializeField] private float runAcceleration = .25f;
+    [SerializeField] private float runSpeed = 4f;
+    Vector3 moveDirection;
+    float horizontalInput;
+    float verticalInput;
     
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
@@ -27,14 +28,11 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
-    
-
-    private Vector2 moveInputValue;
-    Vector3 moveDirection;
-
     private PLAYER_STATES currenPlayerState;
+    
+    public static Transform targetEnemy;
+    public static bool isInCombat = false;
+    public GameObject enemyxd;//VARIABLE PARA DEBUG
     public bool wallrunning;
 
 
@@ -75,12 +73,28 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            targetEnemy = other.transform;
+            enemyxd = other.gameObject;
+            SetTargetGroup.GetInstance().ChangeTargetGroup();
+            isInCombat = true;
+        }
+    }
+
     private void Update()
     {
-        Debug.Log("En Third Person controller el estado es: " + PlayerStates.GetInstance().GetCurrentPlayerState());
         MyInput();
         SpeedControl();
         StateHandler();
+
+        if (InputManager.GetInstance().LightAttack())
+        {
+            Debug.Log(InputManager.GetInstance().LightAttack());
+            enemyxd.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -137,22 +151,33 @@ public class ThirdPersonController : MonoBehaviour
     private void MovePlayer()
     {
 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
-        rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f, ForceMode.Force);
-        
-        if(grounded)
-            rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f, ForceMode.Force);
+        if (targetEnemy != null)
+        {
+            Vector3 toEnemy = (targetEnemy.position - transform.position).normalized;
+            Vector3 enemyRight = Vector3.Cross(Vector3.up, toEnemy);  
+            moveDirection = toEnemy * verticalInput + enemyRight * horizontalInput;
+        }
+        else
+        {
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        }
 
-        else if(!grounded)
-            rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f * airMultiplier, ForceMode.Force);
+        moveDirection = moveDirection.normalized;
+        
+        if (grounded)
+        {
+            rigidBody.AddForce(moveDirection * runSpeed * 10f, ForceMode.Force);
+        }
+        else if (!grounded)
+        {
+            rigidBody.AddForce(moveDirection * runSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
     }
     
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
 
-        // limit velocity if needed
         if(flatVel.magnitude > runSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * runSpeed;
@@ -170,6 +195,16 @@ public class ThirdPersonController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    public Transform GetActiveEnemy()
+    {
+        return targetEnemy;
+    }
+
+    public void ResetEnemy()
+    {
+        targetEnemy = null;
     }
     
     

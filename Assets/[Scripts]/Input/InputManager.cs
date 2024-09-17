@@ -21,6 +21,9 @@ public class InputManager : MonoBehaviour
     private InputAction moveInput;
     private InputAction cameraLookInput;
     private InputAction jumpInput;
+    private InputAction lightAttack;
+    private InputAction heavyAttack;
+    private InputAction combatMovement;
     
     [Header("Read values")] 
     private Vector2 vectorMovementValue = default;
@@ -46,6 +49,13 @@ public class InputManager : MonoBehaviour
         cameraLookInput.Enable();
         jumpInput = playerControls.PlayerLocomotion.Jump;
         jumpInput.Enable();
+        lightAttack = playerControls.Combat.LightAttack;
+        lightAttack.Disable();
+        heavyAttack = playerControls.Combat.HeavyAttack;
+        lightAttack.Disable();
+        combatMovement = playerControls.Combat.Movement;
+        combatMovement.Disable();
+        
     }
     
     public Vector2 MovementInput()
@@ -63,6 +73,30 @@ public class InputManager : MonoBehaviour
     public bool JumpInput()
     {
         return jumpInput.IsInProgress();
+    }
+
+    public bool LightAttack()
+    {
+        return lightAttack.triggered;
+    }
+
+    public bool HeavyAttack()
+    {
+        return heavyAttack.triggered;
+    }
+
+    public void ActivateCombat()
+    {
+        playerControls.Combat.Enable();
+        playerControls.PlayerLocomotion.Disable();
+        playerControls.PlayerLocomotion.Movement.Enable();
+
+    }
+
+    public void DeactivateCombat()
+    {
+        playerControls.Combat.Disable();
+        playerControls.PlayerLocomotion.Enable();
     }
 
    
