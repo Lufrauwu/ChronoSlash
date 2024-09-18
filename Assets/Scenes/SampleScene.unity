@@ -2943,6 +2943,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1292537201 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8664003749247163129, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 2228426640010308142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370070000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9023,6 +9029,11 @@ PrefabInstance:
       propertyPath: explorerFreelookComponent
       value: 
       objectReference: {fileID: 849316276}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1292537201}
     - target: {fileID: 2977233599970826417, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9118,6 +9129,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 8.2694157e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 8664003749247163129, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: afb2661d7ab789f40a9116b7c3c6a24e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
