@@ -91,11 +91,11 @@ public class ThirdPersonController : MonoBehaviour
         SpeedControl();
         StateHandler();
 
-        if (InputManager.GetInstance().LightAttack())
+       /* if (InputManager.GetInstance().LightAttack())
         {
             Debug.Log(InputManager.GetInstance().LightAttack());
             enemyxd.SetActive(false);
-        }
+        }*/
     }
 
     private void FixedUpdate()
