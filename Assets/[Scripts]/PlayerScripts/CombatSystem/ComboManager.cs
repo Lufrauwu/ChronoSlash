@@ -44,12 +44,12 @@ public class ComboManager : MonoBehaviour
     void CheckCombo()
     {
         string currentInput = string.Join("", playerInput);
-        bool foundMatch = false;
+        bool foundMatch = false; 
         textInput.text = currentInput;
 
         foreach (string combo in comboList)
         {
-            if (playerInput.Count <= maxComboInputs && combo.StartsWith(currentInput))
+            if (combo == currentInput && playerInput.Count == maxComboInputs)
             {
                 foundMatch = true;
             
@@ -68,8 +68,9 @@ public class ComboManager : MonoBehaviour
             playerInput.Clear();
         }
 
-        if (playerInput.Count > maxComboInputs)
+        if (playerInput.Count >= maxComboInputs)
         {
+            Debug.Log("BORRAR");
             playerInput.RemoveAt(0);
         }
     }
