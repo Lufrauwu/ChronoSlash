@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
         lightAttack = playerControls.Combat.LightAttack;
         lightAttack.Disable();
         heavyAttack = playerControls.Combat.HeavyAttack;
-        lightAttack.Disable();
+        heavyAttack.Disable();
         combatMovement = playerControls.Combat.Movement;
         combatMovement.Disable();
         
