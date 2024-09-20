@@ -68,10 +68,6 @@ public class ComboManager : MonoBehaviour
             playerInput.Clear();
         }
 
-        if (playerInput.Count >= maxComboInputs)
-        {
-            Debug.Log("BORRAR");
-            playerInput.RemoveAt(0);
-        }
+      
     }
 }
