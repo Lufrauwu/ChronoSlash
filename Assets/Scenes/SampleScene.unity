@@ -9558,7 +9558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxComboInputs: 6
   textInput: {fileID: 1949839277}
-  maxEnergy: 150
+  maxEnergy: 105
   currentEnergy: 150
   lightAttackCost: 10
   heavyAttackCost: 30
