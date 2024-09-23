@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
             return;
         if (other.tag == "Player")
         {
-            Debug.Log(other.name);
             InputManager.GetInstance().ActivateCombat();
             CameraController.GetInstance().SetLockOn();
         }
