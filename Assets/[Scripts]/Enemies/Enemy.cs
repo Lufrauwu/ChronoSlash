@@ -7,11 +7,11 @@ using Input = UnityEngine.Windows.Input;
 
 public class Enemy : MonoBehaviour
 {
-    private ThirdPersonController tpController;
+    private ThirdPersonController thirdPersonController;
 
     private void Awake()
     {
-        tpController = FindAnyObjectByType<ThirdPersonController>();
+        thirdPersonController = FindAnyObjectByType<ThirdPersonController>();
     }
 
 
@@ -23,6 +23,15 @@ public class Enemy : MonoBehaviour
         {
             InputManager.GetInstance().ActivateCombat();
             CameraController.GetInstance().SetLockOn();
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
+        }
+    }
+
+    private void Update()
+    {
+        if (GameManager.GetInstance().GetGameState() == GAME_STATE.ENEMYTURN)
+        {
+            
         }
     }
 
@@ -30,7 +39,7 @@ public class Enemy : MonoBehaviour
     {
         InputManager.GetInstance().DeactivateCombat();
         CameraController.GetInstance().SetLockOff();
-        tpController.ResetEnemy();
+        thirdPersonController.ResetEnemy();
         ThirdPersonController.isInCombat = false;
     }
 }
