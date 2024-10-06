@@ -8,6 +8,7 @@ using Input = UnityEngine.Windows.Input;
 public class Enemy : MonoBehaviour
 {
     private ThirdPersonController thirdPersonController;
+    [SerializeField] private int health = 100;
 
     private void Awake()
     {
@@ -29,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (health<= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
         if (GameManager.GetInstance().GetGameState() == GAME_STATE.ENEMYTURN)
         {
             
@@ -41,5 +46,11 @@ public class Enemy : MonoBehaviour
         CameraController.GetInstance().SetLockOff();
         thirdPersonController.ResetEnemy();
         ThirdPersonController.isInCombat = false;
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }

@@ -21,8 +21,10 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private int heavyAttackCost = 30;
     private int lightAttackDamage = 10;
     private int heavyAttackDamage = 30;
+    [SerializeField] private Enemy currentEnemy;
     
     [Header("UI Elements")]
+    [SerializeField] private GameObject combatUI;
     [SerializeField] private Image progressBar;
 
     [Header("TimeManagement")] [SerializeField]
@@ -47,9 +49,12 @@ public class ComboManager : MonoBehaviour
         {
             case GAME_STATE.EXPLORATION:
                 playerTurn = false;
+                combatUI.SetActive(false);
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                combatUI.SetActive(true);
+                maxTimeInSeconds = maxTimeInSeconds * 60;
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.PLAYERATTACK:
@@ -71,7 +76,16 @@ public class ComboManager : MonoBehaviour
         string[] combos = File.ReadAllLines("Assets/combos.txt");
         comboList.AddRange(combos);
         currentEnergy = maxEnergy;
-        maxTimeInSeconds = maxTimeInSeconds * 60;
+        //maxTimeInSeconds = maxTimeInSeconds * 60;
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            currentEnemy = other.GetComponent<Enemy>();
+            
+        }
     }
 
     void Update()
@@ -184,20 +198,28 @@ public class ComboManager : MonoBehaviour
 
     private void ExecuteAttack()
     {
-        maxTimeInSeconds = 2 * 60;
-        maxTimeInSeconds--;
-        if (maxTimeInSeconds <= 0)
-        {
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
-        }
+        
+        currentEnemy.TakeDamage(heavyAttackCost);
+        Debug.Log("XD");
+        
     }
 
     private void TimerManager()
     {
         maxTimeInSeconds--;
-        if (maxTimeInSeconds <= 0)
+        if (maxTimeInSeconds <= 0 && currentGameState == GAME_STATE.PLAYERTURN)
         {
             GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
         }
+            
+        /*if (maxTimeInSeconds<= 0 && currentGameState == GAME_STATE.PLAYERATTACK) 
+        {
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+        }*/
+    }
+
+    private void ActivateCombatUI()
+    {
+        
     }
 }

@@ -25,7 +25,7 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask whatIsGround;
-    bool grounded;
+    [SerializeField] bool grounded;
 
     [SerializeField] private Transform orientation;
 
@@ -33,7 +33,6 @@ public class ThirdPersonController : MonoBehaviour
     
     public static Transform targetEnemy;
     public static bool isInCombat = false;
-    public GameObject enemyxd;//VARIABLE PARA DEBUG
     public bool wallrunning;
 
 
@@ -79,7 +78,6 @@ public class ThirdPersonController : MonoBehaviour
         if (other.tag == "Enemy")
         {
             targetEnemy = other.transform;
-            enemyxd = other.gameObject;
             SetTargetGroup.GetInstance().ChangeTargetGroup();
             isInCombat = true;
         }
@@ -90,6 +88,7 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        Debug.Log(rigidBody.velocity.magnitude);
 
        /* if (InputManager.GetInstance().LightAttack())
         {
@@ -144,7 +143,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
             currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
-            runSpeed = 7;
+            //runSpeed = 7;
             
         }
     }
@@ -169,22 +168,26 @@ public class ThirdPersonController : MonoBehaviour
         
         if (grounded)
         {
-            rigidBody.AddForce(moveDirection * runSpeed * 10f, ForceMode.Force);
+            rigidBody.AddForce(moveDirection * runSpeed * 10f * Time.fixedUnscaledDeltaTime, ForceMode.Force );
+            Debug.Log(Time.unscaledDeltaTime);
         }
         else if (!grounded)
         {
-            rigidBody.AddForce(moveDirection * runSpeed * 10f * airMultiplier, ForceMode.Force);
+            rigidBody.AddForce(moveDirection * 7 * 10f * airMultiplier, ForceMode.Force);
         }
     }
     
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
-
-        if(flatVel.magnitude > runSpeed)
+        if (!grounded)
         {
-            Vector3 limitedVel = flatVel.normalized * runSpeed;
-            rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
+            if(flatVel.magnitude > 7)
+            { 
+                Vector3 limitedVel = flatVel.normalized * 7;
+                rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
+            }
+            
         }
     }
 

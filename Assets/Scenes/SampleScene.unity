@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16895fbe175bf814f8ee61182b38c537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &360592253
 GameObject:
   m_ObjectHideFlags: 3
@@ -9272,6 +9273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16895fbe175bf814f8ee61182b38c537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!135 &1816503726
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9601,6 +9603,16 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1292537201}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: runSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: airMultiplier
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2977233599970826417, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9744,6 +9756,8 @@ MonoBehaviour:
   currentEnergy: 150
   lightAttackCost: 10
   heavyAttackCost: 30
+  currentEnemy: {fileID: 0}
+  combatUI: {fileID: 962233425}
   progressBar: {fileID: 1642116651}
   maxTimeInSeconds: 5
 --- !u!4 &8008331537181106323 stripped
