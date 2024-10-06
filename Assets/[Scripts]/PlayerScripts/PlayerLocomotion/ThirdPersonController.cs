@@ -88,7 +88,7 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
-        Debug.Log(rigidBody.velocity.magnitude);
+        Debug.Log(transform.up);
 
        /* if (InputManager.GetInstance().LightAttack())
         {
@@ -107,6 +107,7 @@ public class ThirdPersonController : MonoBehaviour
         if (grounded)
         {
             rigidBody.drag = groundDrag;
+            readyToJump = true;
         }
         else
         {
@@ -126,7 +127,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             readyToJump = false;
             Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            //Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
@@ -180,15 +181,27 @@ public class ThirdPersonController : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
-        if (!grounded)
+        if (grounded)
         {
+            // Asegúrate de que la velocidad vertical no esté alterando el salto
+            rigidBody.velocity = new Vector3(flatVel.x, rigidBody.velocity.y, flatVel.z);
+        }
+        else
+        {
+            // Limitar la velocidad horizontal en el aire
             if(flatVel.magnitude > 7)
             { 
                 Vector3 limitedVel = flatVel.normalized * 7;
                 rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
             }
-            
+        
+            // Limitar la velocidad vertical si es necesario
+            if (rigidBody.velocity.y > 7.5f)
+            {
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 7.5f, rigidBody.velocity.z);
+            }
         }
+        
     }
 
     private void Jump()

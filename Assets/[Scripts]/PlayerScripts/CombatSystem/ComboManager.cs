@@ -206,16 +206,20 @@ public class ComboManager : MonoBehaviour
 
     private void TimerManager()
     {
-        maxTimeInSeconds--;
-        if (maxTimeInSeconds <= 0 && currentGameState == GAME_STATE.PLAYERTURN)
+        if (currentGameState == GAME_STATE.PLAYERTURN)
         {
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+            maxTimeInSeconds--;
+            if (maxTimeInSeconds <= 0)
+            {
+                GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+            }
         }
             
-        /*if (maxTimeInSeconds<= 0 && currentGameState == GAME_STATE.PLAYERATTACK) 
+        if (/*maxTimeInSeconds<= 0 &&*/ currentGameState == GAME_STATE.PLAYERATTACK) 
         {
+            maxTimeInSeconds = 5 * 60;
             GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
-        }*/
+        }
     }
 
     private void ActivateCombatUI()
