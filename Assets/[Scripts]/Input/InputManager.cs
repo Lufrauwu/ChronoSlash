@@ -75,6 +75,11 @@ public class InputManager : MonoBehaviour
         return jumpInput.IsInProgress();
     }
 
+    public bool WallJumpInput()
+    {
+        return jumpInput.triggered;
+    }
+
     public bool LightAttack()
     {
         return lightAttack.triggered;

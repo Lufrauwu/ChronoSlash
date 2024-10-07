@@ -84,7 +84,7 @@ public class WallRunning : MonoBehaviour
         horizontalInput = InputManager.GetInstance().MovementInput().x;
         verticalInput = InputManager.GetInstance().MovementInput().y;
 
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if ((wallLeft || wallRight) && /*verticalInput > 0 &&*/ AboveGround() && !exitingWall)
         {
             if (!thirdPersonController.wallrunning)
             {
@@ -99,7 +99,7 @@ public class WallRunning : MonoBehaviour
                 exitWallTimer = exitWallTime;
             }
 
-            if (InputManager.GetInstance().JumpInput())
+            if (InputManager.GetInstance().WallJumpInput())
             {
                 WallJump();
             }

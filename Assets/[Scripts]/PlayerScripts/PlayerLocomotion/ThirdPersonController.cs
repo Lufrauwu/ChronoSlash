@@ -88,8 +88,6 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
-        Debug.Log(transform.up);
-
        /* if (InputManager.GetInstance().LightAttack())
         {
             Debug.Log(InputManager.GetInstance().LightAttack());
@@ -144,7 +142,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
             currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
-            //runSpeed = 7;
+            runSpeed = 475;
             
         }
     }
@@ -170,7 +168,6 @@ public class ThirdPersonController : MonoBehaviour
         if (grounded)
         {
             rigidBody.AddForce(moveDirection * runSpeed * 10f * Time.fixedUnscaledDeltaTime, ForceMode.Force );
-            Debug.Log(Time.unscaledDeltaTime);
         }
         else if (!grounded)
         {
@@ -194,12 +191,13 @@ public class ThirdPersonController : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * 7;
                 rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
             }
-        
+        /*
             // Limitar la velocidad vertical si es necesario
             if (rigidBody.velocity.y > 7.5f)
             {
+                Debug.Log("caca");
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, 7.5f, rigidBody.velocity.z);
-            }
+            }*/
         }
         
     }
