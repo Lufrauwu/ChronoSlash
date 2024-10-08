@@ -200,7 +200,7 @@ public class ComboManager : MonoBehaviour
     {
         
         currentEnemy.TakeDamage(heavyAttackCost);
-        Debug.Log("XD");
+        Debug.Log("EXECUTE ATTACK");
         
     }
 
