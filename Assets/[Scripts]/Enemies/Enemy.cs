@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         }
         if (GameManager.GetInstance().GetGameState() == GAME_STATE.ENEMYTURN)
         {
-            
+            Attack();
         }
     }
 
@@ -52,5 +52,11 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    public void Attack()
+    {
+        Debug.Log("EnemyAttacked");
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
     }
 }

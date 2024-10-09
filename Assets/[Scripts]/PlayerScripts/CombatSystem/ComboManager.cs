@@ -11,6 +11,7 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private int maxComboInputs;
     [SerializeField] private TextMeshProUGUI textInput;
     [SerializeField] private TextMeshProUGUI secondsText;
+    private string currentInput;
     private List<string> comboList = new List<string>();
     private List<int> playerInput = new List<int>();
     private bool isComboComplete = false;
@@ -58,14 +59,14 @@ public class ComboManager : MonoBehaviour
                 postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
                 Time.timeScale = 0.5f;
-                maxTimeInSeconds = maxTimeInSeconds * 60;
+                maxTimeInSeconds = 5 * 60;
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.PLAYERATTACK:
                 playerTurn = false;
                 postProcessingVolume.SetActive(false);
                 Time.timeScale = 1f;
-                ExecuteAttack();
+                ExecuteAttack(currentInput);
                 break;
             case GAME_STATE.ENEMYTURN:
                 playerTurn = false;
@@ -105,6 +106,7 @@ public class ComboManager : MonoBehaviour
                 playerInput.Add(0);
                 currentEnergy -= lightAttackCost;
                 CheckCombo();
+                //ExecuteAttack(currentInput);
             }
         }
 
@@ -141,11 +143,16 @@ public class ComboManager : MonoBehaviour
 
     void CheckCombo()
     {
-        string currentInput = string.Join("", playerInput);
-        bool foundMatch = false; 
+         currentInput = string.Join("", playerInput);
+       // bool foundMatch = false; 
         textInput.text = currentInput;
 
-        foreach (string combo in comboList)
+        if (playerInput.Count == maxComboInputs)
+        {
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+        }
+        
+        /*foreach (string combo in comboList)
         {
             if (combo == currentInput && playerInput.Count == maxComboInputs)
             {
@@ -166,12 +173,12 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo no válido");
             playerInput.Clear();
             currentEnergy = maxEnergy;
-        }
+        }*/
     }
 
     void CheckIncompleteCombo()
-    {
-        string currentInput = string.Join("", playerInput);
+    { 
+        currentInput = string.Join("", playerInput);
         bool foundMatch = false; 
         textInput.text = currentInput;
         
@@ -200,13 +207,38 @@ public class ComboManager : MonoBehaviour
         }
     }
 
-    private void ExecuteAttack()
+    private void ExecuteAttack(string attackToExecute)
     {
         
-        currentEnemy.TakeDamage(heavyAttackCost);
-        Debug.Log("EXECUTE ATTACK");
+        //currentEnemy.TakeDamage(heavyAttackCost);
+        maxTimeInSeconds = 0;
+        bool foundMatch = false; 
+        foreach (string combo in comboList)
+        {
+            if (combo == attackToExecute && playerInput.Count == maxComboInputs)
+            {
+                foundMatch = true;
+            
+                if (attackToExecute == combo)
+                {
+                    Debug.Log("Combo ejecutado: " + combo);
+                    playerInput.Clear();
+                    currentEnergy = maxEnergy;
+                    GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+
+                    return;
+                }
+            }
+        }
         
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+        if (playerInput.Count >= maxComboInputs && !foundMatch)
+        {
+            Debug.Log("Combo no válido");
+            playerInput.Clear();
+            currentEnergy = maxEnergy;
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+
+        }
         
     }
 
