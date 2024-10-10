@@ -7,7 +7,7 @@ public class ThirdPersonController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
     
     [Header("Movement")]
     [SerializeField] private float groundDrag;
@@ -160,7 +160,7 @@ public class ThirdPersonController : MonoBehaviour
         else
         {
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            animator.SetFloat("Velocity", moveDirection.magnitude);
+            //animator.SetFloat("Velocity", moveDirection.magnitude);
         }
 
         moveDirection = moveDirection.normalized;
@@ -204,14 +204,14 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Jump()
     {
-        animator.SetBool("Jump", true);
+        //animator.SetBool("Jump", true);
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
         rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump()
     {
-        animator.SetBool("Jump", false);
+        //animator.SetBool("Jump", false);
         readyToJump = true;
     }
 

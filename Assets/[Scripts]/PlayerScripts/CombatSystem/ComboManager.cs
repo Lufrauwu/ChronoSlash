@@ -33,6 +33,8 @@ public class ComboManager : MonoBehaviour
     private bool playerTurn;
     
     private GAME_STATE currentGameState;
+
+    [SerializeField] private GameObject postProcessingVolume;
     
     private void SubscribeToGameState()
     {
@@ -53,12 +55,17 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
+                Time.timeScale = 0.5f;
                 maxTimeInSeconds = maxTimeInSeconds * 60;
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.PLAYERATTACK:
                 playerTurn = false;
+                postProcessingVolume.SetActive(false);
+                Time.timeScale = 1f;
+                ExecuteAttack();
                 break;
             case GAME_STATE.ENEMYTURN:
                 playerTurn = false;
@@ -118,10 +125,7 @@ public class ComboManager : MonoBehaviour
             
         }
 
-        if (currentGameState == GAME_STATE.PLAYERATTACK)
-        {
-            ExecuteAttack();
-        }
+        
     }
 
     private void FixedUpdate()
@@ -202,6 +206,8 @@ public class ComboManager : MonoBehaviour
         currentEnemy.TakeDamage(heavyAttackCost);
         Debug.Log("EXECUTE ATTACK");
         
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+        
     }
 
     private void TimerManager()
@@ -214,12 +220,7 @@ public class ComboManager : MonoBehaviour
                 GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
             }
         }
-            
-        if (/*maxTimeInSeconds<= 0 &&*/ currentGameState == GAME_STATE.PLAYERATTACK) 
-        {
-            maxTimeInSeconds = 5 * 60;
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
-        }
+        
     }
 
     private void ActivateCombatUI()
