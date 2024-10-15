@@ -138,7 +138,7 @@ public class ComboManager : MonoBehaviour
         }
         int currentSecond = maxTimeInSeconds / 60;
         secondsText.text = currentSecond.ToString();
-        Debug.Log(currentGameState);
+//        Debug.Log(currentGameState);
     }
 
     void CheckCombo()

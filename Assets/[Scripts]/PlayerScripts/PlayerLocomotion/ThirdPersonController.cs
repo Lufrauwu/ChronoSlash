@@ -26,6 +26,8 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] bool grounded;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private PhysicMaterial groundedMaterial;
 
     [SerializeField] private Transform orientation;
 
@@ -134,6 +136,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (wallrunning)
         {
+            _collider.material = null;
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALLRUNNING);
             currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
             runSpeed = wallRunSpeed;
@@ -167,11 +170,14 @@ public class ThirdPersonController : MonoBehaviour
         
         if (grounded)
         {
+            _collider.material = null;
             rigidBody.AddForce(moveDirection * runSpeed * 10f * Time.fixedUnscaledDeltaTime, ForceMode.Force );
         }
         else if (!grounded)
         {
-            rigidBody.AddForce(moveDirection * 7 * 10f * airMultiplier, ForceMode.Force);
+           _collider.material = groundedMaterial;
+            Vector3 airMoveDirection = moveDirection * 7 * 10f * airMultiplier;
+            rigidBody.AddForce(airMoveDirection, ForceMode.Force);
         }
     }
     

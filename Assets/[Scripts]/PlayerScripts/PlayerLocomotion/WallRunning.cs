@@ -62,6 +62,7 @@ public class WallRunning : MonoBehaviour
         {
             WallRunningMovement();
         }
+        Debug.Log(PlayerStates.GetInstance().GetCurrentPlayerState());
     }
 
     private void CheckWall()
