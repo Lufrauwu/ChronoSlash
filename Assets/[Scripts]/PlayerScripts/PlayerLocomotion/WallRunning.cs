@@ -156,7 +156,7 @@ public class WallRunning : MonoBehaviour
         
         if (useGravity)
             rigidbody.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
-       
+      
     }
 
     private void StopWallRunning()

@@ -3,16 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Input = UnityEngine.Windows.Input;
 
 public class Enemy : MonoBehaviour
 {
     private ThirdPersonController thirdPersonController;
-    [SerializeField] private int health = 100;
+    [SerializeField] private int currentHealth = 100;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int damage;
+    private HealthController healthController;
+    [SerializeField] private ENEMY_TYPE enemyType;
 
     private void Awake()
     {
         thirdPersonController = FindAnyObjectByType<ThirdPersonController>();
+        switch (enemyType)
+        {
+            case ENEMY_TYPE.LIGHT:
+                maxHealth = 50; 
+                damage = 30;
+                break;
+            case ENEMY_TYPE.MEDIUM:
+                maxHealth = 100;
+                damage = 20;
+                break;
+            case ENEMY_TYPE.HEAVY:
+                maxHealth = 200;
+                damage = 10;
+                break;
+        }
+        
+        currentHealth = maxHealth;
+
     }
 
 
@@ -24,13 +47,14 @@ public class Enemy : MonoBehaviour
         {
             InputManager.GetInstance().ActivateCombat();
             CameraController.GetInstance().SetLockOn();
+            healthController = other.GetComponent<HealthController>();
             GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
         }
     }
 
     private void Update()
     {
-        if (health<= 0)
+        if (currentHealth<= 0)
         {
             this.gameObject.SetActive(false);
         }
@@ -51,12 +75,20 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
     }
 
     public void Attack()
     {
         Debug.Log("EnemyAttacked");
+        TakeDamage(damage);
         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
     }
+}
+
+public enum ENEMY_TYPE
+{
+    LIGHT,
+    MEDIUM,
+    HEAVY
 }

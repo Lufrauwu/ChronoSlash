@@ -29,7 +29,8 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private Image progressBar;
 
     [Header("TimeManagement")] [SerializeField]
-    private int maxTimeInSeconds = 5;
+    private float maxTimeInSeconds = 5f; // Cambiado a float
+    private float currentTimer;
     private int currentFrame;
     private bool playerTurn;
     
@@ -84,6 +85,7 @@ public class ComboManager : MonoBehaviour
         string[] combos = File.ReadAllLines("Assets/combos.txt");
         comboList.AddRange(combos);
         currentEnergy = maxEnergy;
+        currentTimer = maxTimeInSeconds; 
         //maxTimeInSeconds = maxTimeInSeconds * 60;
     }
     
@@ -136,9 +138,6 @@ public class ComboManager : MonoBehaviour
         {
             TimerManager();
         }
-        int currentSecond = maxTimeInSeconds / 60;
-        secondsText.text = currentSecond.ToString();
-//        Debug.Log(currentGameState);
     }
 
     void CheckCombo()
@@ -246,11 +245,14 @@ public class ComboManager : MonoBehaviour
     {
         if (currentGameState == GAME_STATE.PLAYERTURN)
         {
-            maxTimeInSeconds--;
-            if (maxTimeInSeconds <= 0)
-            {
-                GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
-            }
+            currentTimer -= Time.unscaledDeltaTime; 
+                    if (currentTimer <= 0)
+                    {
+                        GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+                    }
+                    
+                    int currentSecond = Mathf.CeilToInt(currentTimer);
+                    secondsText.text = currentSecond.ToString();
         }
         
     }
