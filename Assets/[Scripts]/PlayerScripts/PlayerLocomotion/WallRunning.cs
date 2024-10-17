@@ -54,7 +54,6 @@ public class WallRunning : MonoBehaviour
     {
         CheckWall();
         StateMachine();
-        Debug.Log("En WallRunning el estado es: " + PlayerStates.GetInstance().GetCurrentPlayerState());
     }
 
     private void FixedUpdate()
@@ -63,6 +62,7 @@ public class WallRunning : MonoBehaviour
         {
             WallRunningMovement();
         }
+        Debug.Log(PlayerStates.GetInstance().GetCurrentPlayerState());
     }
 
     private void CheckWall()
@@ -85,7 +85,7 @@ public class WallRunning : MonoBehaviour
         horizontalInput = InputManager.GetInstance().MovementInput().x;
         verticalInput = InputManager.GetInstance().MovementInput().y;
 
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if ((wallLeft || wallRight) && /*verticalInput > 0 &&*/ AboveGround() && !exitingWall)
         {
             if (!thirdPersonController.wallrunning)
             {
@@ -100,7 +100,7 @@ public class WallRunning : MonoBehaviour
                 exitWallTimer = exitWallTime;
             }
 
-            if (InputManager.GetInstance().JumpInput())
+            if (InputManager.GetInstance().WallJumpInput())
             {
                 WallJump();
             }
@@ -129,7 +129,6 @@ public class WallRunning : MonoBehaviour
 
     private void StartWallRunning()
     {
-        Debug.Log("StartWallRunning");
         thirdPersonController.wallrunning = true;
 
         wallRunTimer = maxWallRunTime;
@@ -157,12 +156,11 @@ public class WallRunning : MonoBehaviour
         
         if (useGravity)
             rigidbody.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
-       
+      
     }
 
     private void StopWallRunning()
     {
-        Debug.Log("DEJÓ");
         thirdPersonController.wallrunning = false;
         //PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
 
