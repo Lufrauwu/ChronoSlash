@@ -7,34 +7,34 @@ public class ThirdPersonController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private float runAcceleration = .25f;
-    [SerializeField] private float runSpeed = 4f;
+    //[SerializeField] private Animator animator;
     
     [Header("Movement")]
-
     [SerializeField] private float groundDrag;
-
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airMultiplier;
     [SerializeField] private bool readyToJump;
     [SerializeField] private float wallRunSpeed;
+    [SerializeField] private float runAcceleration = .25f;
+    [SerializeField] private float runSpeed = 4f;
+    Vector3 moveDirection;
+    float horizontalInput;
+    float verticalInput;
     
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask whatIsGround;
-    bool grounded;
+    [SerializeField] bool grounded;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private PhysicMaterial groundedMaterial;
 
     [SerializeField] private Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
-    
-
-    private Vector2 moveInputValue;
-    Vector3 moveDirection;
-
     private PLAYER_STATES currenPlayerState;
+    
+    public static Transform targetEnemy;
+    public static bool isInCombat = false;
     public bool wallrunning;
 
 
@@ -75,12 +75,26 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            targetEnemy = other.transform;
+            SetTargetGroup.GetInstance().ChangeTargetGroup();
+            isInCombat = true;
+        }
+    }
+
     private void Update()
     {
-        Debug.Log("En Third Person controller el estado es: " + PlayerStates.GetInstance().GetCurrentPlayerState());
         MyInput();
         SpeedControl();
         StateHandler();
+       /* if (InputManager.GetInstance().LightAttack())
+        {
+            Debug.Log(InputManager.GetInstance().LightAttack());
+            enemyxd.SetActive(false);
+        }*/
     }
 
     private void FixedUpdate()
@@ -93,6 +107,7 @@ public class ThirdPersonController : MonoBehaviour
         if (grounded)
         {
             rigidBody.drag = groundDrag;
+            readyToJump = true;
         }
         else
         {
@@ -112,7 +127,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             readyToJump = false;
             Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            //Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
@@ -121,6 +136,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (wallrunning)
         {
+            _collider.material = null;
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALLRUNNING);
             currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
             runSpeed = wallRunSpeed;
@@ -129,7 +145,8 @@ public class ThirdPersonController : MonoBehaviour
         {
             PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
             currenPlayerState = PlayerStates.GetInstance().GetCurrentPlayerState();
-            runSpeed = 7;
+            runSpeed = 475;
+            
         }
     }
     
@@ -137,39 +154,81 @@ public class ThirdPersonController : MonoBehaviour
     private void MovePlayer()
     {
 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
-        rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f, ForceMode.Force);
-        
-        if(grounded)
-            rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f, ForceMode.Force);
+        if (targetEnemy != null)
+        {
+            Vector3 toEnemy = (targetEnemy.position - transform.position).normalized;
+            Vector3 enemyRight = Vector3.Cross(Vector3.up, toEnemy);  
+            moveDirection = toEnemy * verticalInput + enemyRight * horizontalInput;
+        }
+        else
+        {
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            //animator.SetFloat("Velocity", moveDirection.magnitude);
+        }
 
-        else if(!grounded)
-            rigidBody.AddForce(moveDirection.normalized * runSpeed * 10f * airMultiplier, ForceMode.Force);
+        moveDirection = moveDirection.normalized;
+        
+        if (grounded)
+        {
+            _collider.material = null;
+            rigidBody.AddForce(moveDirection * runSpeed * 10f * Time.fixedUnscaledDeltaTime, ForceMode.Force );
+        }
+        else if (!grounded)
+        {
+           _collider.material = groundedMaterial;
+            Vector3 airMoveDirection = moveDirection * 7 * 10f * airMultiplier;
+            rigidBody.AddForce(airMoveDirection, ForceMode.Force);
+        }
     }
     
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
-
-        // limit velocity if needed
-        if(flatVel.magnitude > runSpeed)
+        if (grounded)
         {
-            Vector3 limitedVel = flatVel.normalized * runSpeed;
-            rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
+            // Asegúrate de que la velocidad vertical no esté alterando el salto
+            rigidBody.velocity = new Vector3(flatVel.x, rigidBody.velocity.y, flatVel.z);
         }
+        else
+        {
+            // Limitar la velocidad horizontal en el aire
+            if(flatVel.magnitude > 7)
+            { 
+                Vector3 limitedVel = flatVel.normalized * 7;
+                rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
+            }
+        /*
+            // Limitar la velocidad vertical si es necesario
+            if (rigidBody.velocity.y > 7.5f)
+            {
+                Debug.Log("caca");
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 7.5f, rigidBody.velocity.z);
+            }*/
+        }
+        
     }
 
     private void Jump()
     {
+        //animator.SetBool("Jump", true);
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
-        
         rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump()
     {
+        //animator.SetBool("Jump", false);
         readyToJump = true;
+    }
+
+    public Transform GetActiveEnemy()
+    {
+        return targetEnemy;
+    }
+
+    public void ResetEnemy()
+    {
+        targetEnemy = null;
     }
     
     
