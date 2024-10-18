@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class InputManager : MonoBehaviour
 {
@@ -28,7 +29,9 @@ public class InputManager : MonoBehaviour
     [Header("Read values")] 
     private Vector2 vectorMovementValue = default;
     private Vector2 vectorCameraValue = default;
+    private bool anyButton = true;
 
+    public static IObservable<InputControl> onAnyButtonPress { get; }
 
     private void Awake()
     {
@@ -57,7 +60,21 @@ public class InputManager : MonoBehaviour
         combatMovement.Disable();
         
     }
-    
+
+    private void FixedUpdate()
+    {
+        if (GameManager.GetInstance().GetGameState() == GAME_STATE.MAINMENU)
+        {
+            InputSystem.onAnyButtonPress.CallOnce(ctrl => anyButton = ctrl.IsPressed());
+        }
+
+        if (!anyButton)
+        {
+            CinemachineSwitcher.GetInstance().SwitchState();
+            anyButton = true;
+        }
+    }
+
     public Vector2 MovementInput()
     {
         vectorMovementValue = moveInput.ReadValue<Vector2>();

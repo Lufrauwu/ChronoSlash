@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentGameState = GAME_STATE.EXPLORATION;
+        //currentGameState = GAME_STATE.EXPLORATION;
     }
     
     public void ChangeGameState(GAME_STATE _newState)
@@ -55,4 +55,5 @@ public enum GAME_STATE
     PLAYERATTACK,
     ENEMYTURN,
     ENEMATACK,
+    MAINMENU
 }
