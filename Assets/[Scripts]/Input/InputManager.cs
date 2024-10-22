@@ -63,10 +63,11 @@ public class InputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.GetInstance().GetGameState() == GAME_STATE.MAINMENU)
+        if (GameManager.GetInstance().GetGameState() == GAME_STATE.PRESSANYBUTTON)
         {
             InputSystem.onAnyButtonPress.CallOnce(ctrl => anyButton = ctrl.IsPressed());
         }
+        Debug.Log("any button: " + anyButton);
 
         if (!anyButton)
         {

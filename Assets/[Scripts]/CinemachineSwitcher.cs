@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class CinemachineSwitcher : MonoBehaviour
     { 
         return Instance;
     }
-    #endregion
+    
 
     private void Awake()
     {
@@ -23,12 +24,22 @@ public class CinemachineSwitcher : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 
+    [SerializeField] private GameObject mainMenuCanvas;
+    [SerializeField] private GameObject settingsCanvas;
     private Animator animator;
-    private bool panoramicCamera;
+    private bool panoramicCamera = true;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
+        
+    }
+
+    private void Update()
+    {
+        Debug.Log(panoramicCamera);
     }
 
     public void SwitchState()
@@ -36,11 +47,17 @@ public class CinemachineSwitcher : MonoBehaviour
         if (panoramicCamera)
         {
             animator.Play("Menu");
-        }
-        else
-        {
-            animator.Play("Panoramic");
+            mainMenuCanvas.SetActive(true);
+            settingsCanvas.SetActive(false);
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.MAINMENU);
         }
         panoramicCamera = !panoramicCamera;
+    }
+
+    public void SettingsCamera()
+    {
+        animator.Play("Settings");
+        settingsCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
     }
 }

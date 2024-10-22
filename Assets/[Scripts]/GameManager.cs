@@ -55,5 +55,7 @@ public enum GAME_STATE
     PLAYERATTACK,
     ENEMYTURN,
     ENEMATACK,
+    PRESSANYBUTTON,
     MAINMENU
+    
 }
