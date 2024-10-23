@@ -15715,12 +15715,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec5c04f47a28e9e4b9edd89d12cec36f, type: 2}
+      objectReference: {fileID: 2100000, guid: 021865e344425fe47a628eb74f709fb6, type: 2}
     - target: {fileID: 8684717250140277553, guid: 5fd379941e945fc438c13538dcb8449b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec5c04f47a28e9e4b9edd89d12cec36f, type: 2}
+      objectReference: {fileID: 2100000, guid: 021865e344425fe47a628eb74f709fb6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
