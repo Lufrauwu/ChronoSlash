@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: b6a1e1d012011ea44ade9de6cd00137c, type: 3}
       propertyPath: m_Name
-      value: IL3DN_Plant_Grass_02
+      value: Pasto
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6a1e1d012011ea44ade9de6cd00137c, type: 3}
       propertyPath: m_LocalPosition.x

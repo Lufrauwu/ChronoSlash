@@ -4838,6 +4838,11 @@ PrefabInstance:
       objectReference: {fileID: 380216409}
     - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
+      propertyPath: runSpeed
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
       propertyPath: _collider
       value: 
       objectReference: {fileID: 1517055757}
@@ -8392,7 +8397,7 @@ Terrain:
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
-  m_DrawInstanced: 0
+  m_DrawInstanced: 1
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
@@ -8407,7 +8412,7 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
+  m_EnableHeightmapRayTracing: 0
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &1445175106
@@ -10480,7 +10485,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 00c04f191ef6e654faf71707dc1735f3, type: 2}
+      objectReference: {fileID: 2100000, guid: c68e09d39dd7764469188a43d5b312c6, type: 2}
     - target: {fileID: 8821348273078671838, guid: d5be1eaf50014644db2e0eb44c1b511f,
         type: 3}
       propertyPath: m_Name
