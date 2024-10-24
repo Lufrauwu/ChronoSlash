@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
     {
         //currentGameState = GAME_STATE.EXPLORATION;
     }
+
     
+
     public void ChangeGameState(GAME_STATE _newState)
     {
         currentGameState = _newState;
@@ -56,6 +58,7 @@ public enum GAME_STATE
     ENEMYTURN,
     ENEMATACK,
     PRESSANYBUTTON,
-    MAINMENU
+    MAINMENU,
+    PAUSE
     
 }

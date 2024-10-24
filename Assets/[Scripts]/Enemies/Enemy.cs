@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("EnemyAttacked");
         TakeDamage(damage);
         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
+        Debug.Log("YACAMBIO");
     }
 }
 

@@ -30,7 +30,7 @@ public class ComboManager : MonoBehaviour
 
     [Header("TimeManagement")] [SerializeField]
     private float maxTimeInSeconds = 5f; // Cambiado a float
-    private float currentTimer;
+    [SerializeField] private float currentTimer;
     private int currentFrame;
     private bool playerTurn;
     
@@ -57,10 +57,10 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                currentTimer = 5;
                 postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
                 Time.timeScale = 0.5f;
-                maxTimeInSeconds = 5 * 60;
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.PLAYERATTACK:
@@ -129,7 +129,7 @@ public class ComboManager : MonoBehaviour
             
         }
 
-        
+        Debug.Log(GameManager.GetInstance().GetGameState());
     }
 
     private void FixedUpdate()
@@ -148,7 +148,9 @@ public class ComboManager : MonoBehaviour
 
         if (playerInput.Count == maxComboInputs)
         {
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+            currentTimer = 0;
+            Debug.Log("TIEMPO: " + currentTimer);
+            //GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
         }
         
         /*foreach (string combo in comboList)
@@ -193,6 +195,8 @@ public class ComboManager : MonoBehaviour
                     Debug.Log("Combo incompleto ejecutado: " + combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
+                    GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+
                     return;
                 }
             }

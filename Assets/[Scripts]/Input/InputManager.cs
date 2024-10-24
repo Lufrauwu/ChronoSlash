@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
     private InputAction lightAttack;
     private InputAction heavyAttack;
     private InputAction combatMovement;
+    private InputAction pauseInput;
     
     [Header("Read values")] 
     private Vector2 vectorMovementValue = default;
@@ -52,6 +53,8 @@ public class InputManager : MonoBehaviour
         cameraLookInput.Enable();
         jumpInput = playerControls.PlayerLocomotion.Jump;
         jumpInput.Enable();
+        pauseInput = playerControls.PlayerLocomotion.Pause;
+        pauseInput.Enable();
         lightAttack = playerControls.Combat.LightAttack;
         lightAttack.Disable();
         heavyAttack = playerControls.Combat.HeavyAttack;
@@ -67,7 +70,7 @@ public class InputManager : MonoBehaviour
         {
             InputSystem.onAnyButtonPress.CallOnce(ctrl => anyButton = ctrl.IsPressed());
         }
-        Debug.Log("any button: " + anyButton);
+        //Debug.Log("any button: " + anyButton);
 
         if (!anyButton)
         {
@@ -91,6 +94,11 @@ public class InputManager : MonoBehaviour
     public bool JumpInput()
     {
         return jumpInput.IsInProgress();
+    }
+
+    public bool PauseInput()
+    {
+        return pauseInput.triggered;
     }
 
     public bool WallJumpInput()
