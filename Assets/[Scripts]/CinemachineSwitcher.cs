@@ -40,6 +40,7 @@ public class CinemachineSwitcher : MonoBehaviour
     private void Update()
     {
         Debug.Log(panoramicCamera);
+        Debug.Log(GameManager.GetInstance().GetGameState());
     }
 
     public void SwitchState()
@@ -59,5 +60,11 @@ public class CinemachineSwitcher : MonoBehaviour
         animator.Play("Settings");
         settingsCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
+        panoramicCamera = !panoramicCamera;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
