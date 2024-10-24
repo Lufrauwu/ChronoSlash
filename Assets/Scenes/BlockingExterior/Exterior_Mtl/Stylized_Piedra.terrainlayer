@@ -8,7 +8,7 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: Stylized_Piedra
   m_DiffuseTexture: {fileID: 2800000, guid: 045b94fb48ce9cf478b2e1e57c3072af, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 29d4c2bf4cf56aa40b43ab65c83cdb1a, type: 3}
+  m_NormalMapTexture: {fileID: 0}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 20, y: 20}
   m_TileOffset: {x: 0, y: 0}

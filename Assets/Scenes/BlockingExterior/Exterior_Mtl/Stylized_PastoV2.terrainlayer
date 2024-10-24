@@ -8,7 +8,7 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: Stylized_PastoV2
   m_DiffuseTexture: {fileID: 2800000, guid: e872928e3d1a6d74d8c45759dc1a69c2, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 0f044780abf029d44b61528676856308, type: 3}
+  m_NormalMapTexture: {fileID: 0}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 4, y: 4}
   m_TileOffset: {x: 0, y: 0}

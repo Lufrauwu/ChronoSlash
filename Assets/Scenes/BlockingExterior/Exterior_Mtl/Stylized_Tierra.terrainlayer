@@ -8,7 +8,7 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: Stylized_Tierra
   m_DiffuseTexture: {fileID: 2800000, guid: bd9742430a2ce7245af70d7362283383, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 8af4386dc57dc98469674c11a13311b5, type: 3}
+  m_NormalMapTexture: {fileID: 0}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 12, y: 12}
   m_TileOffset: {x: 0, y: 0}
