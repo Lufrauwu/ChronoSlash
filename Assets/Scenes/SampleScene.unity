@@ -9729,37 +9729,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642116649}
   m_CullTransparentMesh: 1
---- !u!1 &1689684664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3792826880335622975, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
-    type: 3}
-  m_PrefabInstance: {fileID: 2228426640010308142}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1689684673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689684664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7211b8709879e4d9b67fecdb97c952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxComboInputs: 6
-  textInput: {fileID: 1949839277}
-  secondsText: {fileID: 474834709}
-  maxEnergy: 150
-  currentEnergy: 150
-  lightAttackCost: 10
-  heavyAttackCost: 30
-  currentEnemy: {fileID: 0}
-  combatUI: {fileID: 962233425}
-  progressBar: {fileID: 1642116651}
-  maxTimeInSeconds: 5
-  currentTimer: 5
-  postProcessingVolume: {fileID: 458559152}
 --- !u!43 &1698327682
 Mesh:
   m_ObjectHideFlags: 0
@@ -10690,11 +10659,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3792826880335622975, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1689684673}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa, type: 3}
 --- !u!4 &8008331537181106323 stripped
 Transform:

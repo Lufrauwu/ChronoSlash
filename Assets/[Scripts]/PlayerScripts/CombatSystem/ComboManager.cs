@@ -195,7 +195,7 @@ public class ComboManager : MonoBehaviour
                     Debug.Log("Combo incompleto ejecutado: " + combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
-                    GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+                    GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
 
                     return;
                 }
