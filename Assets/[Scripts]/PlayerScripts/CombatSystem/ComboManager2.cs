@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ComboManager : MonoBehaviour
+public class ComboManager2 : MonoBehaviour
 {
     [Header ("Combo Inputs")]
     [SerializeField] private int maxComboInputs;
@@ -57,7 +57,6 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
-                currentTimer = 5;
                 postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
                 Time.timeScale = 0.5f;
@@ -123,11 +122,7 @@ public class ComboManager : MonoBehaviour
             
         }
 
-        if (currentEnergy <= lightAttackCost || currentEnergy <= 0 || currentGameState == GAME_STATE.PLAYERATTACK && playerInput.Count < maxComboInputs)
-        {
-            CheckIncompleteCombo();
-            
-        }
+        
 
         Debug.Log(GameManager.GetInstance().GetGameState());
     }
@@ -142,73 +137,18 @@ public class ComboManager : MonoBehaviour
 
     void CheckCombo()
     {
-         currentInput = string.Join("", playerInput);
-       // bool foundMatch = false; 
+        currentInput = string.Join("", playerInput);
         textInput.text = currentInput;
 
         if (playerInput.Count == maxComboInputs)
         {
             currentTimer = 0;
-            Debug.Log("TIEMPO: " + currentTimer);
+            Debug.Log("CheckCombo");
             //GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
         }
-        
-        /*foreach (string combo in comboList)
-        {
-            if (combo == currentInput && playerInput.Count == maxComboInputs)
-            {
-                foundMatch = true;
-            
-                if (currentInput == combo)
-                {
-                    Debug.Log("Combo ejecutado: " + combo);
-                    playerInput.Clear();
-                    currentEnergy = maxEnergy;
-                    return;
-                }
-            }
-        }
-
-        if (playerInput.Count >= maxComboInputs && !foundMatch)
-        {
-            Debug.Log("Combo no válido");
-            playerInput.Clear();
-            currentEnergy = maxEnergy;
-        }*/
     }
 
-    void CheckIncompleteCombo()
-    { 
-        currentInput = string.Join("", playerInput);
-        bool foundMatch = false; 
-        textInput.text = currentInput;
-        
-        
-        foreach (string combo in comboList)
-        {
-            if (combo == currentInput)
-            {
-                foundMatch = true;
-            
-                if (currentInput == combo)
-                {
-                    Debug.Log("Combo incompleto ejecutado: " + combo);
-                    playerInput.Clear();
-                    currentEnergy = maxEnergy;
-                    GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
-
-                    return;
-                }
-            }
-        }
-
-        if (!foundMatch)
-        {
-            Debug.Log("Combo incompleto no válido");
-            playerInput.Clear();
-            currentEnergy = maxEnergy;
-        }
-    }
+   
 
     private void ExecuteAttack(string attackToExecute)
     {
@@ -232,6 +172,21 @@ public class ComboManager : MonoBehaviour
                     return;
                 }
             }
+            else if (combo == attackToExecute && playerInput.Count < maxComboInputs)
+            {
+                foundMatch = true;
+            
+                if (attackToExecute == combo)
+                {
+                    Debug.Log("Combo incompleto ejecutado: " + combo);
+                    playerInput.Clear();
+                    currentEnergy = maxEnergy;
+                    GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+
+                    return;
+                }
+            }
+            
         }
         
         if (playerInput.Count >= maxComboInputs && !foundMatch)
@@ -257,6 +212,10 @@ public class ComboManager : MonoBehaviour
                     
                     int currentSecond = Mathf.CeilToInt(currentTimer);
                     secondsText.text = currentSecond.ToString();
+        }
+        else
+        {
+            currentTimer = 5;
         }
         
     }
