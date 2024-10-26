@@ -37,6 +37,7 @@ public class ComboManager : MonoBehaviour
     private GAME_STATE currentGameState;
 
     [SerializeField] private GameObject postProcessingVolume;
+    [SerializeField] private GameObject explorePostProcessingVolume;
     
     private void SubscribeToGameState()
     {
@@ -105,6 +106,12 @@ public class ComboManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.GetInstance().GetGameState() != GAME_STATE.PLAYERTURN)
+        {
+            Debug.Log("DESACTIVAR POSTPROCESS");
+            postProcessingVolume.SetActive(false);
+            explorePostProcessingVolume.SetActive(true);
+        }
         progressBar.fillAmount = (float)currentEnergy / maxEnergy;
         if (InputManager.GetInstance().LightAttack())
         {
@@ -135,6 +142,8 @@ public class ComboManager : MonoBehaviour
         }
 
         Debug.Log(GameManager.GetInstance().GetGameState());
+
+       
     }
 
     private void FixedUpdate()
@@ -245,7 +254,7 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo no válido");
             playerInput.Clear();
             currentEnergy = maxEnergy;
-            //GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
 
         }
         
