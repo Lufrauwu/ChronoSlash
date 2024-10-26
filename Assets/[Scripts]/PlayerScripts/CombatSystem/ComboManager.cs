@@ -57,6 +57,10 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                playerInput.Clear();
+                currentInput = "";
+                Debug.Log("Reset Variables");
+                currentEnergy = maxEnergy;
                 currentTimer = 5;
                 postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
@@ -207,6 +211,7 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo incompleto no válido");
             playerInput.Clear();
             currentEnergy = maxEnergy;
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
         }
     }
 
@@ -249,7 +254,7 @@ public class ComboManager : MonoBehaviour
     {
         if (currentGameState == GAME_STATE.PLAYERTURN)
         {
-            currentTimer -= Time.unscaledDeltaTime; 
+            currentTimer -= Time.fixedUnscaledDeltaTime; 
                     if (currentTimer <= 0)
                     {
                         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
