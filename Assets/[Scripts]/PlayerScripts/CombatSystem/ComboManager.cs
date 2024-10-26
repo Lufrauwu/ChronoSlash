@@ -57,6 +57,7 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                textInput.text = "";
                 playerInput.Clear();
                 currentInput = "";
                 Debug.Log("Reset Variables");

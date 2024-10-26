@@ -10578,6 +10578,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1009015168619263758, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
+      propertyPath: maxComboInputs
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009015168619263758, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
       propertyPath: postProcessingVolume
       value: 
       objectReference: {fileID: 458559152}
