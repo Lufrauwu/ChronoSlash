@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentGameState = GAME_STATE.EXPLORATION;
+        //currentGameState = GAME_STATE.EXPLORATION;
     }
+
     
+
     public void ChangeGameState(GAME_STATE _newState)
     {
         currentGameState = _newState;
+        Debug.Log("Game State Change " + currentGameState);
 
         if (OnGameStateChanged != null)
         {
@@ -55,4 +58,8 @@ public enum GAME_STATE
     PLAYERATTACK,
     ENEMYTURN,
     ENEMATACK,
+    PRESSANYBUTTON,
+    MAINMENU,
+    PAUSE
+    
 }

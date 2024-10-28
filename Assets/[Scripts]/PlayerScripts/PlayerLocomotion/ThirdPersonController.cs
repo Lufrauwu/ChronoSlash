@@ -90,6 +90,10 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+       /* if (InputManager.GetInstance().PauseInput())
+        {
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
+        }*/
        /* if (InputManager.GetInstance().LightAttack())
         {
             Debug.Log(InputManager.GetInstance().LightAttack());

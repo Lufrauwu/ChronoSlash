@@ -30,13 +30,14 @@ public class ComboManager : MonoBehaviour
 
     [Header("TimeManagement")] [SerializeField]
     private float maxTimeInSeconds = 5f; // Cambiado a float
-    private float currentTimer;
+    [SerializeField] private float currentTimer;
     private int currentFrame;
     private bool playerTurn;
     
     private GAME_STATE currentGameState;
 
     [SerializeField] private GameObject postProcessingVolume;
+    [SerializeField] private GameObject explorePostProcessingVolume;
     
     private void SubscribeToGameState()
     {
@@ -57,10 +58,15 @@ public class ComboManager : MonoBehaviour
                 break;
             case GAME_STATE.PLAYERTURN:
                 playerTurn = true;
+                textInput.text = "";
+                playerInput.Clear();
+                currentInput = "";
+                Debug.Log("Reset Variables");
+                currentEnergy = maxEnergy;
+                currentTimer = 5;
                 postProcessingVolume.SetActive(true);
                 combatUI.SetActive(true);
                 Time.timeScale = 0.5f;
-                maxTimeInSeconds = 5 * 60;
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.PLAYERATTACK:
@@ -100,6 +106,12 @@ public class ComboManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.GetInstance().GetGameState() != GAME_STATE.PLAYERTURN)
+        {
+            Debug.Log("DESACTIVAR POSTPROCESS");
+            postProcessingVolume.SetActive(false);
+            explorePostProcessingVolume.SetActive(true);
+        }
         progressBar.fillAmount = (float)currentEnergy / maxEnergy;
         if (InputManager.GetInstance().LightAttack())
         {
@@ -129,7 +141,9 @@ public class ComboManager : MonoBehaviour
             
         }
 
-        
+        Debug.Log(GameManager.GetInstance().GetGameState());
+
+       
     }
 
     private void FixedUpdate()
@@ -148,7 +162,9 @@ public class ComboManager : MonoBehaviour
 
         if (playerInput.Count == maxComboInputs)
         {
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
+            currentTimer = 0;
+            Debug.Log("TIEMPO: " + currentTimer);
+            //GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
         }
         
         /*foreach (string combo in comboList)
@@ -193,6 +209,8 @@ public class ComboManager : MonoBehaviour
                     Debug.Log("Combo incompleto ejecutado: " + combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
+                    GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+
                     return;
                 }
             }
@@ -203,6 +221,7 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo incompleto no válido");
             playerInput.Clear();
             currentEnergy = maxEnergy;
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
         }
     }
 
@@ -245,7 +264,7 @@ public class ComboManager : MonoBehaviour
     {
         if (currentGameState == GAME_STATE.PLAYERTURN)
         {
-            currentTimer -= Time.unscaledDeltaTime; 
+            currentTimer -= Time.fixedUnscaledDeltaTime; 
                     if (currentTimer <= 0)
                     {
                         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);

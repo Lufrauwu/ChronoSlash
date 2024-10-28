@@ -81,7 +81,8 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         Debug.Log("EnemyAttacked");
-        TakeDamage(damage);
+        healthController.TakeDamage(damage);
+        Debug.Log("YACAMBIO");
         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
     }
 }
