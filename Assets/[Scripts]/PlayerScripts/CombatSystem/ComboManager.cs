@@ -23,6 +23,7 @@ public class ComboManager : MonoBehaviour
     private int lightAttackDamage = 10;
     private int heavyAttackDamage = 30;
     [SerializeField] private Enemy currentEnemy;
+    [SerializeField] private AttackTriggerer attackTriggerer;
     
     [Header("UI Elements")]
     [SerializeField] private GameObject combatUI;
@@ -61,7 +62,6 @@ public class ComboManager : MonoBehaviour
                 textInput.text = "";
                 playerInput.Clear();
                 currentInput = "";
-                Debug.Log("Reset Variables");
                 currentEnergy = maxEnergy;
                 currentTimer = 5;
                 postProcessingVolume.SetActive(true);
@@ -108,7 +108,6 @@ public class ComboManager : MonoBehaviour
     {
         if (GameManager.GetInstance().GetGameState() != GAME_STATE.PLAYERTURN)
         {
-            Debug.Log("DESACTIVAR POSTPROCESS");
             postProcessingVolume.SetActive(false);
             explorePostProcessingVolume.SetActive(true);
         }
@@ -140,9 +139,7 @@ public class ComboManager : MonoBehaviour
             CheckIncompleteCombo();
             
         }
-
-        Debug.Log(GameManager.GetInstance().GetGameState());
-
+        
        
     }
 
@@ -207,6 +204,7 @@ public class ComboManager : MonoBehaviour
                 if (currentInput == combo)
                 {
                     Debug.Log("Combo incompleto ejecutado: " + combo);
+                    attackTriggerer.ChooseAnimation(playerInput);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
@@ -240,6 +238,7 @@ public class ComboManager : MonoBehaviour
                 if (attackToExecute == combo)
                 {
                     Debug.Log("Combo ejecutado: " + combo);
+                    attackTriggerer.ChooseAnimation(playerInput);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
