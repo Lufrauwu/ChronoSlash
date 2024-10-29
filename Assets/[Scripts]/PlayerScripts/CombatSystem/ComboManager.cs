@@ -204,7 +204,7 @@ public class ComboManager : MonoBehaviour
                 if (currentInput == combo)
                 {
                     Debug.Log("Combo incompleto ejecutado: " + combo);
-                    attackTriggerer.ChooseAnimation(playerInput);
+                    attackTriggerer.ChooseAnimation(combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
@@ -238,7 +238,7 @@ public class ComboManager : MonoBehaviour
                 if (attackToExecute == combo)
                 {
                     Debug.Log("Combo ejecutado: " + combo);
-                    attackTriggerer.ChooseAnimation(playerInput);
+                    attackTriggerer.ChooseAnimation(combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);

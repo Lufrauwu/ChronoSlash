@@ -16,33 +16,17 @@ public class AttackTriggerer : MonoBehaviour
         
     }
 
-    public void ChooseAnimation(List<int> input)
+    public void ChooseAnimation(string combo)
     {
-        switch (input.Count)
+        switch (combo)
         {
-            case 6:
-                savedCombo = new int[6];
-                foreach (int comboInput in input)
-                {
-                    for (int i = 0; i < 6; i++)
-                    {
-                        if (comboInput == 0) 
-                        {
-                            savedCombo[i] = 0;
-                        }
-                        else if (comboInput == 1)
-                        {
-                            savedCombo[i] += 1;
-                        }
-                        Debug.Log(savedCombo[i]);
-                    }
-                }
-               
+            case "000000":
+               Debug.Log("hOLA");
                 break;
-            case 5:
+            case "001100":
                 Debug.Log("SON 5");
                 break;
-            case 4:
+            case "000111":
                 Debug.Log("SON 4");
                 break;
             

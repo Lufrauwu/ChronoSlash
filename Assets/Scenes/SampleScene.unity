@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f84358f9423914fadad312b028a4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedCombo: 
 --- !u!43 &129185369
 Mesh:
   m_ObjectHideFlags: 0
