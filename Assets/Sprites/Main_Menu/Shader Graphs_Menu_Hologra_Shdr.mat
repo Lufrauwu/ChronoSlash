@@ -31,7 +31,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -54,24 +54,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: -0.34
     - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _Distorsion_Speed: 0.2
+    - _Distorsion_Speed: 0.02
     - _DstBlend: 10
-    - _Mask_Power: 0.88
-    - _NoiseSpeed: 0.1
+    - _Mask_Power: 0.91
+    - _NoiseSpeed: 0.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
     - _Surface: 1
-    - _Transparencia: 1
+    - _Transparencia: 0.5
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Holograma_color: {r: 0.6325488, g: 0, b: 0.7490195, a: 0}
+    - _Holograma_color: {r: 0, g: 0.41719294, b: 1, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
