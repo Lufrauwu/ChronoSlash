@@ -15241,10 +15241,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c68e09d39dd7764469188a43d5b312c6, type: 2}
+    - target: {fileID: 5225456880916529023, guid: d5be1eaf50014644db2e0eb44c1b511f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777306414721595689, guid: d5be1eaf50014644db2e0eb44c1b511f,
+        type: 3}
+      propertyPath: CurveSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777306414721595689, guid: d5be1eaf50014644db2e0eb44c1b511f,
+        type: 3}
+      propertyPath: Emmaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: c68e09d39dd7764469188a43d5b312c6, type: 2}
     - target: {fileID: 8821348273078671838, guid: d5be1eaf50014644db2e0eb44c1b511f,
         type: 3}
       propertyPath: m_Name
       value: Puente
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821348273078671838, guid: d5be1eaf50014644db2e0eb44c1b511f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
