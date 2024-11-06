@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Torre_Mtl_A
-  m_Shader: {fileID: -6465566751694194690, guid: bf36778a400a0894b86a1f49c422fa62,
+  m_Shader: {fileID: -6465566751694194690, guid: e8a12cc94995ba2458d61ee405867ef8,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_8606F96E: 1
+    - Vector1_8606F96E: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
