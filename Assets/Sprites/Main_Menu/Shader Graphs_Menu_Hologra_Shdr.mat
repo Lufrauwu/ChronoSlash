@@ -61,8 +61,8 @@ Material:
     - _Cull: 2
     - _Distorsion_Speed: 0.02
     - _DstBlend: 10
-    - _Mask_Power: 0.91
-    - _NoiseSpeed: 0.4
+    - _Mask_Power: 1.05
+    - _NoiseSpeed: 0.13
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
@@ -72,6 +72,6 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Holograma_color: {r: 0, g: 0.41719294, b: 1, a: 0}
+    - _Holograma_color: {r: 1.946891, g: 1.645572, b: 0, a: 1}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
