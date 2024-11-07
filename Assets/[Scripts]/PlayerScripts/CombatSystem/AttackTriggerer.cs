@@ -24,6 +24,7 @@ public class AttackTriggerer : MonoBehaviour
             case "000000":
                Debug.Log("hOLA");
                animator.SetBool("Slash", true);
+               combo = "";
                 break;
             case "001100":
                 Debug.Log("SON 5");
