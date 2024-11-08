@@ -31,6 +31,11 @@ public class AnimationController : MonoBehaviour
     {
         postProcessingVolume.SetActive(false);
     }
+    
+    public void ActivatePostProcessVolume()
+    {
+        postProcessingVolume.SetActive(true);
+    }
 
     public void ChangeToEnemyTurn()
     {

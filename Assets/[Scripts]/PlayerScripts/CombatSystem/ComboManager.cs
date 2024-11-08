@@ -226,9 +226,8 @@ public class ComboManager : MonoBehaviour
 
     private void ExecuteAttack(string attackToExecute)
     {
-        
         //currentEnemy.TakeDamage(heavyAttackCost);
-        maxTimeInSeconds = 0;
+        //maxTimeInSeconds = 0;
         bool foundMatch = false; 
         foreach (string combo in comboList)
         {
@@ -238,6 +237,7 @@ public class ComboManager : MonoBehaviour
             
                 if (attackToExecute == combo)
                 {
+                    playerTurn = false;
                     Debug.Log("Combo ejecutado: " + combo);
                     MoveTowardsTarget(currentEnemy.transform);
                     attackTriggerer.ChooseAnimation(combo);

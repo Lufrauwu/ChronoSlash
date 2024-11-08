@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int damage;
     private HealthController healthController;
     [SerializeField] private ENEMY_TYPE enemyType;
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -81,9 +82,12 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         Debug.Log("EnemyAttacked");
+        animator.SetBool("Attack", true);
         healthController.TakeDamage(damage);
         Debug.Log("YACAMBIO");
         GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
+        //animator.SetBool("Attack", false);
+
     }
 }
 
