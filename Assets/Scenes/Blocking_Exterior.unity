@@ -3445,8 +3445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locations:
-  - {fileID: 1963281516}
-  - {fileID: 1157635859}
+  - {x: 292, y: 9, z: 577}
+  - {x: 292, y: 16, z: 577}
 --- !u!1001 &278717960
 PrefabInstance:
   m_ObjectHideFlags: 0

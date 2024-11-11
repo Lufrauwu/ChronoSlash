@@ -6,20 +6,40 @@ using UnityEngine;
 public class Elevador : MonoBehaviour
 {
     private int LocationsIndex = 0;
-    public GameObject[] locations;
-    private void OnTriggerEnter(Collider other)
+    public Vector3[] locations;
+    private bool PlayerOn = false;
+
+    private void Update()
     {
-     if(other.gameObject.tag == "Player")
+        if (PlayerOn == true)
         {
-            //transform.position = Vector3.MoveTowards(transform.position, locations[1].position, 2 * Time.deltaTime);
-            print("PlayerOn");
+            transform.position = Vector3.MoveTowards(transform.position, locations[1], 2 * Time.deltaTime);
         }
-        else
+        if (PlayerOn == false)
         {
-            //transform.position = Vector3.MoveTowards(transform.position, locations[0].position, 2 * Time.deltaTime);
-            print("PlayerOff");
+            transform.position = Vector3.MoveTowards(transform.position, locations[0], 2 * Time.deltaTime);
         }
     }
 
+    //No esta moviendose constantemente
+    private void OnTriggerEnter(Collider other)
+    {
+     
+        if(other.gameObject.tag == "Player")
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, locations[1], 2 * Time.deltaTime);
+            print("PlayerOn");
+            PlayerOn = true;       
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, locations[1], 2 * Time.deltaTime);
+            print("PlayerOff");
+            PlayerOn = false;
+        }
+    }
 
 }
