@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8850932502983703427}
   - component: {fileID: 6783999796449421266}
   - component: {fileID: 779676510934488744}
+  - component: {fileID: 4614005235148440834}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -120,6 +121,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
+  _collider: {fileID: 0}
+  groundedMaterial: {fileID: 0}
   orientation: {fileID: 2076053420343878044}
   wallrunning: 0
 --- !u!114 &4820973011765204342
@@ -213,6 +216,27 @@ MonoBehaviour:
   useGravity: 1
   gravityCounterForce: 3.78
   orientation: {fileID: 2076053420343878044}
+--- !u!65 &4614005235148440834
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792826880335622975}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.52, y: 0.19, z: 0.52}
+  m_Center: {x: 0, y: 0.06, z: 0}
 --- !u!1 &4718006004521998776
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,8 +266,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718006004521998776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11099021, y: 0.000000007557637, z: -8.440385e-10, w: 0.99382156}
-  m_LocalPosition: {x: 0, y: 2, z: -4.86}
+  m_LocalRotation: {x: 0.1782479, y: -0.000000032786414, z: 0.000000005939222, w: 0.98398566}
+  m_LocalPosition: {x: 0, y: 1.9999996, z: -4.799988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,7 +306,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 50
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -687,6 +711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerFBXForUnity
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 654a0a444713aa54283ab95a3d6f1de1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
