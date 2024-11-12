@@ -8,7 +8,7 @@ public class NivelExterior : MonoBehaviour
     public GameObject[] Objetos;
     public GameObject[] ObjetosJugador;
 
-    private bool PickedUp = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +21,13 @@ public class NivelExterior : MonoBehaviour
     {
         
     }
-
-    void OnTriggerEnter (Colission other)
+    private void OnTriggerEnter(Collider other)
     {
-
+        if(other.tag == "Collectible")
+        {
+            print("Agarrado");
+            //other.GetComponent<>().MeshRenderer
+        }
     }
+
 }

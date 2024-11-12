@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1449972755736169844}
   - component: {fileID: 4984430686585856187}
   - component: {fileID: 4006919253509060774}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Torre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.053571, y: 19.964312, z: 10.05357}
+  m_Size: {x: 10.053571, y: 20.23, z: 10.05357}
   m_Center: {x: 0, y: 9.886651, z: 0}
 --- !u!65 &4006919253509060774
 BoxCollider:
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 61751156287355828}
   - component: {fileID: 7356255620997768176}
   - component: {fileID: 874076457873051487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,6 +267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Objetivo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 768bd07dd2fae1a40bd1bd511b5d7dac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
