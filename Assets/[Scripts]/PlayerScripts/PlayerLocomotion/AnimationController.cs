@@ -50,4 +50,9 @@ public class AnimationController : MonoBehaviour
         Debug.Log("CAMBIO");
         GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
     }
+
+    public void DeactivateAttack()
+    {
+        animator.SetBool("Attack", false);
+    }
 }

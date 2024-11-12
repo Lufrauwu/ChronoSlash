@@ -74221,7 +74221,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 2.35
-    functionName: ChangeToStartTurn
+    functionName: ChangeToEndTurn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.35
+    functionName: DeactivateAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
