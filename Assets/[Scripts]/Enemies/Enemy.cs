@@ -81,6 +81,10 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         GameManager.GetInstance().ChangeGameState(GAME_STATE.ATTACK_STATE);
+        Vector3 direction = thirdPersonController.transform.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation,  10f);
         //Debug.Log("EnemyAttacked");
         animator.SetBool("Attack", true);
         healthController.TakeDamage(damage);

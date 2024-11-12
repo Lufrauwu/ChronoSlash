@@ -42,7 +42,7 @@ public class SetTargetGroup : MonoBehaviour
             group.m_Targets = new CinemachineTargetGroup.Target[]
             {
                 new CinemachineTargetGroup.Target {target = player, weight = 1f, radius =  1f},
-                new CinemachineTargetGroup.Target { target = enemy, weight = 0.2f, radius = 1f }
+                new CinemachineTargetGroup.Target { target = enemy, weight = 0.5f, radius = 1f }
             };
             
         }

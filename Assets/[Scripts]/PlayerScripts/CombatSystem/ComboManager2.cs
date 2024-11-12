@@ -60,6 +60,7 @@ public class ComboManager2 : MonoBehaviour
             case GAME_STATE.START_TURN:
                 if (playerTurn)
                 {
+                    InputManager.GetInstance().ActivateCombat();
                     ResetVariables();
                 }
                 else
@@ -69,6 +70,7 @@ public class ComboManager2 : MonoBehaviour
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
                 break;
             case GAME_STATE.ATTACK_STATE:
+                InputManager.GetInstance().DeactivateInputs();
                 if (playerTurn)
                 {
                     FindAttack();
@@ -108,7 +110,7 @@ public class ComboManager2 : MonoBehaviour
     void Update()
     {
         progressBar.fillAmount = (float)currentEnergy / maxEnergy;
-        if (InputManager.GetInstance().LightAttack())
+        if (InputManager.GetInstance().LightAttack() && playerInput.Count < maxComboInputs)
         {
             if (currentEnergy >= lightAttackCost)
             {
@@ -119,7 +121,7 @@ public class ComboManager2 : MonoBehaviour
             }
         }
 
-        if (InputManager.GetInstance().HeavyAttack())
+        if (InputManager.GetInstance().HeavyAttack() && playerInput.Count < maxComboInputs)
         {
             if (currentEnergy >= heavyAttackCost)
             { 
@@ -276,18 +278,18 @@ public class ComboManager2 : MonoBehaviour
         transform.position = targetPosition; // Asegura la posición final exacta
 
         // Rotación
-        Quaternion startRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
-        float lookElapsedTime = 0f;
+       // Quaternion startRotation = transform.rotation;
+        //Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
+        //float lookElapsedTime = 0f;
 
-        while (lookElapsedTime < lookDuration)
+       /* while (lookElapsedTime < lookDuration)
         {
             // Interpola la rotación usando Slerp
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, lookElapsedTime / lookDuration);
             lookElapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.rotation = targetRotation; // Asegura la rotación final exacta
+        transform.rotation = targetRotation; // Asegura la rotación final exacta*/
     }
 
     public void DeactivatePostProcessVolume()
