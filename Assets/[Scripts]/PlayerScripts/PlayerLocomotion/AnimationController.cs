@@ -25,6 +25,8 @@ public class AnimationController : MonoBehaviour
     public void SetNormalSlash()
     {
         animator.SetBool("Slash", false);
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+
     }
     
     public void DeactivatePostProcessVolume()
@@ -34,11 +36,18 @@ public class AnimationController : MonoBehaviour
     
     public void ActivatePostProcessVolume()
     {
-        postProcessingVolume.SetActive(true);
+        //postProcessingVolume.SetActive(true);
     }
 
-    public void ChangeToEnemyTurn()
+    public void ChangeToEndTurn()
     {
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+        Debug.Log("animationevent");
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+    }
+
+    public void ChangeToStartTurn()
+    {
+        Debug.Log("CAMBIO");
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
     }
 }

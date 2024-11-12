@@ -22,7 +22,7 @@ public class AttackTriggerer : MonoBehaviour
         switch (combo)
         {
             case "000000":
-               Debug.Log("hOLA");
+              // Debug.Log("hOLA");
                animator.SetBool("Slash", true);
                combo = "";
                 break;

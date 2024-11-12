@@ -32847,7 +32847,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.7166667
+    m_StopTime: 1.6666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -64502,15 +64502,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.6666666
+  - time: 1.6333333
     functionName: SetNormalSlash
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7166667
-    functionName: ChangeToEnemyTurn
+  - time: 1.6666666
+    functionName: ChangeToEndTurn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

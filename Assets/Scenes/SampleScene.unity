@@ -539,6 +539,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savedCombo: 
   animator: {fileID: 90851435}
+--- !u!114 &105525711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105525701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75aa09b1188781946b3e790d98c52e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxComboInputs: 6
+  textInput: {fileID: 1949839277}
+  secondsText: {fileID: 474834709}
+  maxEnergy: 150
+  currentEnergy: 150
+  lightAttackCost: 10
+  heavyAttackCost: 30
+  currentEnemy: {fileID: 0}
+  attackTriggerer: {fileID: 105525710}
+  combatUI: {fileID: 962233425}
+  progressBar: {fileID: 1642116651}
+  maxTimeInSeconds: 5
+  currentTimer: 5
+  playerTurn: 0
+  postProcessingVolume: {fileID: 458559152}
+  explorePostProcessingVolume: {fileID: 832575517}
 --- !u!43 &129185369
 Mesh:
   m_ObjectHideFlags: 0
@@ -2333,6 +2361,7 @@ MonoBehaviour:
   damage: 0
   enemyType: 0
   animator: {fileID: 289456160}
+  comboManager2: {fileID: 105525711}
 --- !u!135 &289456158
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2555,6 +2584,7 @@ MonoBehaviour:
   damage: 0
   enemyType: 0
   animator: {fileID: 0}
+  comboManager2: {fileID: 0}
 --- !u!1 &360592253
 GameObject:
   m_ObjectHideFlags: 3
@@ -11037,6 +11067,7 @@ MonoBehaviour:
   damage: 0
   enemyType: 0
   animator: {fileID: 0}
+  comboManager2: {fileID: 0}
 --- !u!135 &1816503726
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11493,7 +11524,7 @@ PrefabInstance:
     - target: {fileID: 1009015168619263758, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1009015168619263758, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
@@ -11555,6 +11586,11 @@ PrefabInstance:
       propertyPath: explorerFreelookComponent
       value: 
       objectReference: {fileID: 849316276}
+    - target: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: comboManager2
+      value: 
+      objectReference: {fileID: 105525711}
     - target: {fileID: 2511656509409788839, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: postProcessingVolume
@@ -11625,7 +11661,11 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3792826880335622975, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
-      insertIndex: 7
+      insertIndex: 2
+      addedObject: {fileID: 105525711}
+    - targetCorrespondingSourceObject: {fileID: 3792826880335622975, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      insertIndex: 8
       addedObject: {fileID: 105525710}
   m_SourcePrefab: {fileID: 100100000, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa, type: 3}
 --- !u!4 &8008331537181106323 stripped

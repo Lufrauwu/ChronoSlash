@@ -59,6 +59,9 @@ public enum GAME_STATE
     ENEMATACK,
     PRESSANYBUTTON,
     MAINMENU,
-    PAUSE
+    PAUSE,
+    START_TURN,
+    ATTACK_STATE,
+    END_TURN
     
 }
