@@ -138,11 +138,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dde1f41e7e1957740896a5602e83330d, type: 2}
+      objectReference: {fileID: 2100000, guid: ba7ce6c1412c3d147a0f77134c497dcf, type: 2}
     - target: {fileID: 919132149155446097, guid: 4c418c1b7571be84fa9371c63414f550,
         type: 3}
       propertyPath: m_Name
       value: Anden_Barda_v4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c418c1b7571be84fa9371c63414f550,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

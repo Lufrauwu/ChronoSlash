@@ -99,10 +99,10 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.06
-  m_Range: 0.8000002
-  m_SpotAngle: 162.46004
+  m_Color: {r: 0.10980393, g: 0.7843138, b: 0.9960785, a: 1}
+  m_Intensity: 4
+  m_Range: 1.5
+  m_SpotAngle: 179
   m_InnerSpotAngle: 130.76895
   m_CookieSize: 10
   m_Shadows:
@@ -142,7 +142,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -240,7 +240,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 54fdf84e6b81c3149ab118b6012dea14, type: 2}
+      objectReference: {fileID: 2100000, guid: 33101a9c27f37824f828fc2ccc07b073, type: 2}
     - target: {fileID: -7511558181221131132, guid: 167ee47fbeaaee1499fc09a438716bc1,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
