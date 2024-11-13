@@ -31,6 +31,8 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private Transform orientation;
 
+    [SerializeField] private ComboManager2 comboManager2;
+
     private PLAYER_STATES currenPlayerState;
     
     public static Transform targetEnemy;
@@ -79,6 +81,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            comboManager2.playerTurn = true;
             targetEnemy = other.transform;
             SetTargetGroup.GetInstance().ChangeTargetGroup();
             isInCombat = true;

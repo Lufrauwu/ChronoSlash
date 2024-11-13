@@ -130,6 +130,13 @@ public class InputManager : MonoBehaviour
         playerControls.PlayerLocomotion.Enable();
     }
 
+    public void DeactivateInputs()
+    {
+        playerControls.Combat.Disable();
+        playerControls.PlayerLocomotion.Movement.Disable();
+
+    }
+
    
  
 }

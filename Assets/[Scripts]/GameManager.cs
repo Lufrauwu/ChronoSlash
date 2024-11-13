@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(GAME_STATE _newState)
     {
         currentGameState = _newState;
-        Debug.Log("Game State Change " + currentGameState);
 
         if (OnGameStateChanged != null)
         {
@@ -60,6 +59,9 @@ public enum GAME_STATE
     ENEMATACK,
     PRESSANYBUTTON,
     MAINMENU,
-    PAUSE
+    PAUSE,
+    START_TURN,
+    ATTACK_STATE,
+    END_TURN
     
 }

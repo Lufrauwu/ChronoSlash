@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class ComboManager : MonoBehaviour
     private int lightAttackDamage = 10;
     private int heavyAttackDamage = 30;
     [SerializeField] private Enemy currentEnemy;
+    [SerializeField] private AttackTriggerer attackTriggerer;
     
     [Header("UI Elements")]
     [SerializeField] private GameObject combatUI;
@@ -43,7 +45,7 @@ public class ComboManager : MonoBehaviour
     {
         GameManager.GetInstance().OnGameStateChanged += GameStateChange;
         GameStateChange(GameManager.GetInstance().GetGameState());
-    }
+    }   
 
     private void GameStateChange(GAME_STATE _newGameState)
     {
@@ -61,7 +63,6 @@ public class ComboManager : MonoBehaviour
                 textInput.text = "";
                 playerInput.Clear();
                 currentInput = "";
-                Debug.Log("Reset Variables");
                 currentEnergy = maxEnergy;
                 currentTimer = 5;
                 postProcessingVolume.SetActive(true);
@@ -108,7 +109,6 @@ public class ComboManager : MonoBehaviour
     {
         if (GameManager.GetInstance().GetGameState() != GAME_STATE.PLAYERTURN)
         {
-            Debug.Log("DESACTIVAR POSTPROCESS");
             postProcessingVolume.SetActive(false);
             explorePostProcessingVolume.SetActive(true);
         }
@@ -140,9 +140,7 @@ public class ComboManager : MonoBehaviour
             CheckIncompleteCombo();
             
         }
-
         Debug.Log(GameManager.GetInstance().GetGameState());
-
        
     }
 
@@ -207,6 +205,7 @@ public class ComboManager : MonoBehaviour
                 if (currentInput == combo)
                 {
                     Debug.Log("Combo incompleto ejecutado: " + combo);
+                    attackTriggerer.ChooseAnimation(combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
@@ -227,9 +226,8 @@ public class ComboManager : MonoBehaviour
 
     private void ExecuteAttack(string attackToExecute)
     {
-        
         //currentEnemy.TakeDamage(heavyAttackCost);
-        maxTimeInSeconds = 0;
+        //maxTimeInSeconds = 0;
         bool foundMatch = false; 
         foreach (string combo in comboList)
         {
@@ -239,10 +237,12 @@ public class ComboManager : MonoBehaviour
             
                 if (attackToExecute == combo)
                 {
+                    playerTurn = false;
                     Debug.Log("Combo ejecutado: " + combo);
+                    MoveTowardsTarget(currentEnemy.transform);
+                    attackTriggerer.ChooseAnimation(combo);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
-                    GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
 
                     return;
                 }
@@ -254,7 +254,7 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo no válido");
             playerInput.Clear();
             currentEnergy = maxEnergy;
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
+            //GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
 
         }
         
@@ -274,6 +274,57 @@ public class ComboManager : MonoBehaviour
                     secondsText.text = currentSecond.ToString();
         }
         
+    }
+    private Vector3 TargetOffset()
+    {
+        Vector3 position = currentEnemy.transform.position;
+        // Calcula una posición hacia la cual moverse a una distancia de 1.2f desde la posición actual
+        return Vector3.MoveTowards(position, transform.position, 1.2f);
+    }
+
+    public void MoveTowardsTarget(Transform target)
+    {
+        // Verifica la distancia antes de iniciar el movimiento
+        if (Vector3.Distance(transform.position, target.position) > 1 && Vector3.Distance(transform.position, target.position) < 10)
+        {
+            // Inicia la corrutina para mover y rotar el objeto
+            StartCoroutine(MoveAndLookAtTarget(TargetOffset(), currentEnemy.transform.position, 0.5f, 0.2f));
+        }
+    }
+
+    private IEnumerator MoveAndLookAtTarget(Vector3 targetPosition, Vector3 lookAtPosition, float moveDuration, float lookDuration)
+    {
+        // Movimiento
+        Vector3 startPosition = transform.position;
+        float moveElapsedTime = 0f;
+
+        while (moveElapsedTime < moveDuration)
+        {
+            // Interpola la posición usando Lerp
+            transform.position = Vector3.Lerp(startPosition, targetPosition, moveElapsedTime / moveDuration);
+            moveElapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition; // Asegura la posición final exacta
+
+        // Rotación
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
+        float lookElapsedTime = 0f;
+
+        while (lookElapsedTime < lookDuration)
+        {
+            // Interpola la rotación usando Slerp
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, lookElapsedTime / lookDuration);
+            lookElapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = targetRotation; // Asegura la rotación final exacta
+    }
+
+    public void DeactivatePostProcessVolume()
+    {
+        postProcessingVolume.SetActive(false);
     }
 
     private void ActivateCombatUI()

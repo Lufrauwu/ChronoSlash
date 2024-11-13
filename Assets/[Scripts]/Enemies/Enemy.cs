@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int damage;
     private HealthController healthController;
     [SerializeField] private ENEMY_TYPE enemyType;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ComboManager2 comboManager2;
 
     private void Awake()
     {
@@ -48,7 +50,8 @@ public class Enemy : MonoBehaviour
             InputManager.GetInstance().ActivateCombat();
             CameraController.GetInstance().SetLockOn();
             healthController = other.GetComponent<HealthController>();
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
+            comboManager2.playerTurn = true;
         }
     }
 
@@ -58,10 +61,7 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        if (GameManager.GetInstance().GetGameState() == GAME_STATE.ENEMYTURN)
-        {
-            Attack();
-        }
+        
     }
 
     private void OnDisable()
@@ -80,10 +80,17 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("EnemyAttacked");
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.ATTACK_STATE);
+        Vector3 direction = thirdPersonController.transform.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation,  10f);
+        //Debug.Log("EnemyAttacked");
+        animator.SetBool("Attack", true);
         healthController.TakeDamage(damage);
-        Debug.Log("YACAMBIO");
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERTURN);
+//        Debug.Log("YACAMBIO");
+        //animator.SetBool("Attack", false);
+
     }
 }
 
