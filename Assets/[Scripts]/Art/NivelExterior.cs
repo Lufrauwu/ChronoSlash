@@ -5,8 +5,8 @@ using UnityEngine;
 public class NivelExterior : MonoBehaviour
 {
     //Arrays de objetos que el jugador va a coleccionar
-    public GameObject[] Objetos;
-    public GameObject[] ObjetosJugador;
+    public List<GameObject> Objetos = new List<GameObject>();
+    public List<GameObject> ObjetosJugador = new List<GameObject>();
 
 
 
@@ -25,9 +25,13 @@ public class NivelExterior : MonoBehaviour
     {
         if(other.tag == "Collectible")
         {
-            print("Agarrado");
+            Collected();
             //other.GetComponent<>().MeshRenderer
         }
     }
 
+    private void Collected()
+    {
+        print("Agarrado");
+    }
 }
