@@ -8,6 +8,8 @@ public class NivelExterior : MonoBehaviour
     public List<GameObject> Objetos = new List<GameObject>();
     public List<GameObject> ObjetosJugador = new List<GameObject>();
 
+    public bool NivelTerminado = false;
+
 
 
     // Start is called before the first frame update
@@ -19,19 +21,19 @@ public class NivelExterior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Objetos.Count == ObjetosJugador.Count)
+        {
+            NivelTerminado = true;
+            print (NivelTerminado);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Collectible")
         {
-            Collected();
-            //other.GetComponent<>().MeshRenderer
+            ObjetosJugador.Add(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 
-    private void Collected()
-    {
-        print("Agarrado");
-    }
 }

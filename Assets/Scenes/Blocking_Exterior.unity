@@ -390,6 +390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Objetivo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 159750976326127402, guid: d31755f0962872f4ebfa125bb49eabd4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
     - target: {fileID: 6468351771986954933, guid: d31755f0962872f4ebfa125bb49eabd4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5010,7 +5015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556241602}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.1961166, y: 0, z: 0, w: 0.9805806}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15284,10 +15289,8 @@ MonoBehaviour:
   - {fileID: 199753602}
   - {fileID: 1637049922}
   - {fileID: 1708823976}
-  ObjetosJugador:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  ObjetosJugador: []
+  NivelTerminado: 0
 --- !u!1001 &2129339469
 PrefabInstance:
   m_ObjectHideFlags: 0
