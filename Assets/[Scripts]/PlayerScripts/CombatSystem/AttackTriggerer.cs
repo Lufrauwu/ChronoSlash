@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,15 @@ public class AttackTriggerer : MonoBehaviour
 {
     [SerializeField] private int[] savedCombo;
     [SerializeField] private Animator animator;
+    [SerializeField] private Enemy _enemy;
     void Start()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _enemy = other.GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -24,6 +31,7 @@ public class AttackTriggerer : MonoBehaviour
             case "000000":
               // Debug.Log("hOLA");
                animator.SetBool("Slash", true);
+              _enemy.TakeDamage(20);
                combo = "";
                 break;
             case "001100":

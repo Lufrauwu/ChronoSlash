@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Input = UnityEngine.Windows.Input;
@@ -61,6 +62,8 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+
+        
         
     }
 
@@ -70,7 +73,6 @@ public class Enemy : MonoBehaviour
         CameraController.GetInstance().SetLockOff();
         thirdPersonController.ResetEnemy();
         ThirdPersonController.isInCombat = false;
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
 
     public void TakeDamage(int damage)
