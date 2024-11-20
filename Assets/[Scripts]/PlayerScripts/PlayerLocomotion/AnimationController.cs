@@ -8,6 +8,8 @@ public class AnimationController : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject postProcessingVolume;
+    [SerializeField] private ThirdPersonController thrdPersonController;
+    [SerializeField] private bool isplayer;
 
 
     private void Awake()
@@ -20,6 +22,10 @@ public class AnimationController : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
+        if (isplayer && thrdPersonController.isInCombat == false)
+        {
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+        }
     }
 
     public void SetNormalSlash()
