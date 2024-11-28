@@ -10,6 +10,8 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private GameObject postProcessingVolume;
     [SerializeField] private ThirdPersonController thrdPersonController;
     [SerializeField] private bool isplayer;
+    [SerializeField] private List<ParticleSystem> particles;
+    private string currentAnimation = "";
 
 
     private void Awake()
@@ -21,10 +23,36 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
+        //animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
         if (isplayer && thrdPersonController.isInCombat == false)
         {
             GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+        }
+        CheckAnimation();
+    }
+
+    private void CheckAnimation()
+    {
+        if (InputManager.GetInstance().MovementInput().y == 1)
+        {
+            ChangeAnimation("Run_anim");
+        }
+        else if (InputManager.GetInstance().MovementInput().y == -1)
+        {
+            ChangeAnimation("Walk_Backward_anim");
+        }
+        else
+        {
+            ChangeAnimation("Idle_anim");
+        }
+    }
+
+    public void ChangeAnimation(string animation, float crossfadeTime = 0.2f)
+    {
+        if (currentAnimation != animation)
+        {   
+            currentAnimation = animation;
+            animator.CrossFade(animation, crossfadeTime);
         }
     }
 
