@@ -5256,9 +5256,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 814672968}
-  postProcessingVolume: {fileID: 0}
+  postProcessingVolume: {fileID: 1738517294}
   thrdPersonController: {fileID: 0}
   isplayer: 0
+  particles:
+  - {fileID: 258295244375626962, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
+  objectToDeactivate: {fileID: 0}
 --- !u!1001 &825230651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5709,6 +5712,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1182839921733774286, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: _animController
+      value: 
+      objectReference: {fileID: 814672969}
     - target: {fileID: 1404791212444121504, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: playerObj
@@ -5894,13 +5902,29 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -8.2699997e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 7188350247625821405, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281073870443529143, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8489152677233456975, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9148628049545412541, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8351371968232166179, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa, type: 3}
+    - {fileID: 1684817434273056730, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14806,6 +14830,7 @@ MonoBehaviour:
   savedCombo: 
   animator: {fileID: 1574313529}
   _enemy: {fileID: 0}
+  _animController: {fileID: 0}
 --- !u!114 &2119241243 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2015344037950486694, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,

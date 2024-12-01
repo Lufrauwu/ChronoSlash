@@ -11,6 +11,8 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private ThirdPersonController thrdPersonController;
     [SerializeField] private bool isplayer;
     [SerializeField] private List<ParticleSystem> particles;
+    [SerializeField] private GameObject objectToDeactivate;
+    private ParticleSystem particleInstance;
     private string currentAnimation = "";
 
 
@@ -33,6 +35,10 @@ public class AnimationController : MonoBehaviour
 
     private void CheckAnimation()
     {
+        if (currentAnimation == "A_00000")
+        {
+            return;
+        }
         if (InputManager.GetInstance().MovementInput().y == 1)
         {
             ChangeAnimation("Run_anim");
@@ -85,8 +91,23 @@ public class AnimationController : MonoBehaviour
         GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
     }
 
+    public void DeactivateObject(GameObject obj)
+    {
+        obj = objectToDeactivate;
+        objectToDeactivate.SetActive(false);
+    }
+
+    public void PlayParticles()
+    {
+        particles[0].Play();
+    }
     public void DeactivateAttack()
     {
         animator.SetBool("Attack", false);
+    }
+
+    public void SpawnParticles()
+    {
+        particleInstance = Instantiate(particles[0], transform.position, Quaternion.identity);
     }
 }
