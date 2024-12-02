@@ -8,6 +8,12 @@ public class AnimationController : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject postProcessingVolume;
+    [SerializeField] private ThirdPersonController thrdPersonController;
+    [SerializeField] private bool isplayer;
+    [SerializeField] private List<ParticleSystem> particles;
+    [SerializeField] private GameObject objectToDeactivate;
+    private ParticleSystem particleInstance;
+    private string currentAnimation = "";
 
 
     private void Awake()
@@ -19,7 +25,63 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
+        //animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
+        if (isplayer && thrdPersonController.isInCombat == false)
+        {
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+        }
+        CheckAnimation();
+    }
+
+    private void CheckAnimation()
+    {
+        if (currentAnimation == "A_00000")
+        {
+            return;
+        }
+        if (InputManager.GetInstance().MovementInput().y == 1)
+        {
+            ChangeAnimation("Run_anim");
+        }
+        else if (InputManager.GetInstance().MovementInput().y == -1)
+        {
+            ChangeAnimation("Walk_Backward_anim");
+        }
+        else
+        {
+            ChangeAnimation("Idle_anim");
+        }
+    }
+
+    public void ChangeAnimation(string animation, float crossfadeTime = 0.2f, float time= 0)
+    {
+        if (time > 0) StartCoroutine(Wait());
+        else Validate();
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(time );
+            Validate();
+        }
+
+        void Validate()
+        {
+            if (currentAnimation != animation)
+            {   
+                currentAnimation = animation;
+
+                if (currentAnimation == "")
+                {
+                    CheckAnimation();
+                }
+                else
+                {
+                    animator.CrossFade(animation, crossfadeTime);
+                }
+            }
+        }
+        
+        
     }
 
     public void SetNormalSlash()
@@ -41,8 +103,8 @@ public class AnimationController : MonoBehaviour
 
     public void ChangeToEndTurn()
     {
-        Debug.Log("animationevent");
         GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+        Debug.Log("end turn");
     }
 
     public void ChangeToStartTurn()
@@ -51,8 +113,23 @@ public class AnimationController : MonoBehaviour
         GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
     }
 
+    public void DeactivateObject(GameObject obj)
+    {
+        obj = objectToDeactivate;
+        objectToDeactivate.SetActive(false);
+    }
+
+    public void PlayParticles()
+    {
+        particles[0].Play();
+    }
     public void DeactivateAttack()
     {
         animator.SetBool("Attack", false);
+    }
+
+    public void SpawnParticles()
+    {
+        particleInstance = Instantiate(particles[0], transform.position, Quaternion.identity);
     }
 }

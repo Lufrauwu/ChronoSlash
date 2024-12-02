@@ -12,7 +12,7 @@ public class ComboManager2 : MonoBehaviour
     [SerializeField] private int maxComboInputs;
     [SerializeField] private TextMeshProUGUI textInput;
     [SerializeField] private TextMeshProUGUI secondsText;
-    private string currentInput;
+    [SerializeField] private string currentInput;
     private List<string> comboList = new List<string>();
     private List<int> playerInput = new List<int>();
     private bool isComboComplete = false;
@@ -109,6 +109,7 @@ public class ComboManager2 : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("El turno es: " + playerTurn);
         progressBar.fillAmount = (float)currentEnergy / maxEnergy;
         if (InputManager.GetInstance().LightAttack() && playerInput.Count < maxComboInputs)
         {
@@ -158,7 +159,7 @@ public class ComboManager2 : MonoBehaviour
         if (playerInput.Count == maxComboInputs)
         {
             currentTimer = 0;
-            Debug.Log("TIEMPO: " + currentTimer);
+//            Debug.Log("TIEMPO: " + currentTimer);
             //GameManager.GetInstance().ChangeGameState(GAME_STATE.PLAYERATTACK);
         }
         
@@ -202,7 +203,6 @@ public class ComboManager2 : MonoBehaviour
 
     private void ExecuteAttack(string attackToExecute)
     {
-       
         bool foundMatch = false; 
         foreach (string combo in comboList)
         {
@@ -212,6 +212,8 @@ public class ComboManager2 : MonoBehaviour
             
                 if (attackToExecute == combo)
                 {
+                    Debug.Log("PIO PIO");
+
                     Debug.Log("Combo ejecutado: " + combo);
                     MoveTowardsTarget(currentEnemy.transform);
                     attackTriggerer.ChooseAnimation(combo);
@@ -324,6 +326,7 @@ public class ComboManager2 : MonoBehaviour
         Time.timeScale = 1f;
         postProcessingVolume.SetActive(false);
         ExecuteAttack(currentInput);
+
     }
 
     private void EnemyAttack()

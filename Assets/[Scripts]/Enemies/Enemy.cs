@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Input = UnityEngine.Windows.Input;
@@ -43,8 +44,11 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(ThirdPersonController.isInCombat)
+        if (thirdPersonController.isInCombat)
+        {
+            Debug.Log(gameObject.name + " is in combat");
             return;
+        }
         if (other.tag == "Player")
         {
             InputManager.GetInstance().ActivateCombat();
@@ -61,6 +65,8 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+
+        
         
     }
 
@@ -69,7 +75,7 @@ public class Enemy : MonoBehaviour
         InputManager.GetInstance().DeactivateCombat();
         CameraController.GetInstance().SetLockOff();
         thirdPersonController.ResetEnemy();
-        ThirdPersonController.isInCombat = false;
+        thirdPersonController.isInCombat = false;
         GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
 

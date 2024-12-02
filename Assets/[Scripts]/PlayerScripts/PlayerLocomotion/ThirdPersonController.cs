@@ -7,6 +7,8 @@ public class ThirdPersonController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private Camera playerCamera;
+    public bool isInCombat;
+
     //[SerializeField] private Animator animator;
     
     [Header("Movement")]
@@ -18,6 +20,8 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float wallRunSpeed;
     [SerializeField] private float runAcceleration = .25f;
     [SerializeField] private float runSpeed = 4f;
+    public bool happy;
+
     Vector3 moveDirection;
     float horizontalInput;
     float verticalInput;
@@ -36,7 +40,6 @@ public class ThirdPersonController : MonoBehaviour
     private PLAYER_STATES currenPlayerState;
     
     public static Transform targetEnemy;
-    public static bool isInCombat = false;
     public bool wallrunning;
 
 
@@ -81,10 +84,11 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+
             comboManager2.playerTurn = true;
+            isInCombat = true;
             targetEnemy = other.transform;
             SetTargetGroup.GetInstance().ChangeTargetGroup();
-            isInCombat = true;
         }
     }
 
@@ -93,6 +97,7 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        //Debug.Log("ESTA EN COMBATE " + isInCombat);
        /* if (InputManager.GetInstance().PauseInput())
         {
             GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
@@ -122,6 +127,15 @@ public class ThirdPersonController : MonoBehaviour
         }
         
         MovePlayer();
+        
+        if (!isInCombat)
+        {
+            InputManager.GetInstance().DeactivateCombat();
+        }
+        else
+        {
+            InputManager.GetInstance().ActivateCombat();
+        }
         
     }
 
