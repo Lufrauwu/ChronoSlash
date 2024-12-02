@@ -84,7 +84,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("Cheese");
 
             comboManager2.playerTurn = true;
             isInCombat = true;
@@ -98,7 +97,7 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
-        Debug.Log("ESTA EN COMBATE " + isInCombat);
+        //Debug.Log("ESTA EN COMBATE " + isInCombat);
        /* if (InputManager.GetInstance().PauseInput())
         {
             GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);

@@ -1,4 +1,4 @@
-Shader "Custom/ReflectiveDistortionShaderRim"
+Shader "Custom/WaterReflectiveDistortionRim"
 {
     Properties
     {
@@ -15,19 +15,20 @@ Shader "Custom/ReflectiveDistortionShaderRim"
         _RimColor ("Rim Color", Color) = (1,0,0,1)
         _RimPower ("Rim Power", Range(0.1, 10)) = 2.0
         _RimThickness ("Rim Thickness", Range(0.1, 2)) = 0.5
+        _Amplitude ("Amplitude", Float) = 0.1
+        _Frequency ("Frequency", Float) = 4.0
+        _Speed ("Speed", Float) = 1.0
     }
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Geometry" }
+        Tags { "RenderPipeline" = "UniversalRenderPipeline" "RenderType"="Opaque" }
         LOD 200
 
         Pass
         {
             Name "ForwardLit"
             Tags { "LightMode"="UniversalForward" }
-            Blend SrcAlpha OneMinusSrcAlpha
-            ZWrite On
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -61,6 +62,9 @@ Shader "Custom/ReflectiveDistortionShaderRim"
                 float4 _RimColor;
                 float _RimPower;
                 float _RimThickness;
+                float _Amplitude;
+                float _Frequency;
+                float _Speed;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -75,11 +79,24 @@ Shader "Custom/ReflectiveDistortionShaderRim"
             Varyings vert(Attributes v)
             {
                 Varyings o;
-                o.positionHCS = TransformObjectToHClip(v.positionOS);
+
+                // Obtener posición en espacio mundial
+                float3 positionWS = TransformObjectToWorld(v.positionOS.xyz);
+
+                // Generar deformación tipo ola
+                float wave = sin(positionWS.x * _Frequency + _Time.y * _Speed) *
+                             cos(positionWS.z * _Frequency + _Time.y * _Speed);
+                wave *= _Amplitude;
+
+                // Modificar la posición del vértice
+                positionWS += wave * normalize(v.normalOS);
+
+                // Transformar la posición de vuelta al clip space
+                o.positionHCS = TransformWorldToHClip(positionWS);
+                o.worldPos = positionWS;
                 o.uv = v.uv;
                 o.normalWS = TransformObjectToWorldNormal(v.normalOS);
-                o.viewDirWS = GetCameraPositionWS() - TransformObjectToWorld(v.positionOS);
-                o.worldPos = TransformObjectToWorld(v.positionOS);
+                o.viewDirWS = GetCameraPositionWS() - positionWS;
                 return o;
             }
 
@@ -124,5 +141,4 @@ Shader "Custom/ReflectiveDistortionShaderRim"
             ENDHLSL
         }
     }
-    FallBack "Standard"
 }

@@ -53,13 +53,35 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    public void ChangeAnimation(string animation, float crossfadeTime = 0.2f)
+    public void ChangeAnimation(string animation, float crossfadeTime = 0.2f, float time= 0)
     {
-        if (currentAnimation != animation)
-        {   
-            currentAnimation = animation;
-            animator.CrossFade(animation, crossfadeTime);
+        if (time > 0) StartCoroutine(Wait());
+        else Validate();
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(time );
+            Validate();
         }
+
+        void Validate()
+        {
+            if (currentAnimation != animation)
+            {   
+                currentAnimation = animation;
+
+                if (currentAnimation == "")
+                {
+                    CheckAnimation();
+                }
+                else
+                {
+                    animator.CrossFade(animation, crossfadeTime);
+                }
+            }
+        }
+        
+        
     }
 
     public void SetNormalSlash()
@@ -81,8 +103,8 @@ public class AnimationController : MonoBehaviour
 
     public void ChangeToEndTurn()
     {
-        Debug.Log("animationevent");
         GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+        Debug.Log("end turn");
     }
 
     public void ChangeToStartTurn()
