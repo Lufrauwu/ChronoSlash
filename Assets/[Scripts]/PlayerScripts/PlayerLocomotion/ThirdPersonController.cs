@@ -92,6 +92,11 @@ public class ThirdPersonController : MonoBehaviour
             targetEnemy = other.transform;
             SetTargetGroup.GetInstance().ChangeTargetGroup();
         }
+
+        if (other.tag == "Exit")
+        {
+            LevelManager.GetInstance().SwitchScene("Blocking_Exterior");
+        }
     }
 
     private void Update()

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: A_00000
+  m_Name: A_0101
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -6791,7 +6791,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 4
+    intParameter: 1
     messageOptions: 0
   - time: 0.55
     functionName: ChangeToEndTurn

@@ -35,7 +35,9 @@ public class AnimationController : MonoBehaviour
 
     private void CheckAnimation()
     {
-        if (currentAnimation == "A_00000")
+        if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"
+            || currentAnimation == "A_00000" || currentAnimation == "A_00011" || currentAnimation == "A_11000" || currentAnimation == "A_001100" || currentAnimation == "A_000111" 
+            || currentAnimation == "A_110011" || currentAnimation == "A_111111")
         {
             return;
         }
@@ -128,8 +130,8 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
-    public void SpawnParticles()
+    public void SpawnParticles(int index)
     {
-        particleInstance = Instantiate(particles[0], transform.position, Quaternion.identity);
+        particleInstance = Instantiate(particles[index], transform.position, Quaternion.identity);
     }
 }

@@ -6628,9 +6628,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
+      propertyPath: particles.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
       propertyPath: postProcessingVolume
       value: 
       objectReference: {fileID: 1738517294}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: particles.Array.data[0]
+      value: 
+      objectReference: {fileID: 7364936370289906279, guid: 74c549d1b06b6b140a1fd9536eea637f,
+        type: 3}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: particles.Array.data[1]
+      value: 
+      objectReference: {fileID: 5416272393665673852, guid: 8436419d5cd706242bb810378b8a8835,
+        type: 3}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: particles.Array.data[2]
+      value: 
+      objectReference: {fileID: 258295244375626962, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d,
+        type: 3}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: particles.Array.data[3]
+      value: 
+      objectReference: {fileID: 3477272991562575618, guid: 6c21e7a6e514dd9499418cbbb66211cf,
+        type: 3}
+    - target: {fileID: 8654086837615532124, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: particles.Array.data[4]
+      value: 
+      objectReference: {fileID: 1231740799838009829, guid: 87167b19fb4a32a4e8e4f2c5f40a40b3,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
