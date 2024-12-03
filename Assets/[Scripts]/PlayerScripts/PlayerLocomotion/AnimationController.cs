@@ -41,13 +41,25 @@ public class AnimationController : MonoBehaviour
         {
             return;
         }
-        if (InputManager.GetInstance().MovementInput().y == 1)
+        if (GameManager.GetInstance().currentGameState == GAME_STATE.EXPLORATION && InputManager.GetInstance().MovementInput().magnitude != 0 )
         {
             ChangeAnimation("Run_anim");
         }
         else if (InputManager.GetInstance().MovementInput().y == -1)
         {
             ChangeAnimation("Walk_Backward_anim");
+        }
+        else if (InputManager.GetInstance().MovementInput().y == 1)
+        {
+            ChangeAnimation("Enfrente");
+        }
+        else if (InputManager.GetInstance().MovementInput().x == -1)
+        {
+            ChangeAnimation("izquierda");
+        }
+        else if (InputManager.GetInstance().MovementInput().x == 1)
+        {
+            ChangeAnimation("derecha");
         }
         else
         {

@@ -154,7 +154,8 @@ public class ComboManager2 : MonoBehaviour
     {
          currentInput = string.Join("", playerInput);
        // bool foundMatch = false; 
-        textInput.text = currentInput;
+       string promptInput = currentInput.Replace("0","a").Replace("1", "b");
+       textInput.text = promptInput;
 
         if (playerInput.Count == maxComboInputs)
         {
