@@ -59,19 +59,7 @@ public class HealthBarController : MonoBehaviour
     {
         return (health / _healthController.GetMaxHealth()) * 100;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            OnHealthUpdate(_healthController.GetCurrentHealth(), true);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            OnHealthUpdate(_healthController.GetCurrentHealth(), false);
-        }
-    }
-
+    
     private void OnDisable()
     {
         _healthController.OnHealthChanged -= OnHealthUpdate;
