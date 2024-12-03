@@ -26,10 +26,11 @@ public class WallRunning : MonoBehaviour
     [SerializeField] private float wallcheckDisance;
     [SerializeField] private float minJumpHeight;
     [SerializeField] private float playerHeight;
+    [SerializeField] private AnimationController animationController;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
-    private bool wallLeft;
-    private bool wallRight;
+   [SerializeField] private bool wallLeft;
+   [SerializeField] private bool wallRight;
     
     [SerializeField] private bool useGravity;
     [SerializeField] private float gravityCounterForce;
@@ -54,6 +55,15 @@ public class WallRunning : MonoBehaviour
     {
         CheckWall();
         StateMachine();
+        if (wallLeft)
+        {
+            animationController.ChangeAnimation("WallRunLeft");
+        }
+
+        if (wallRight)
+        {
+            animationController.ChangeAnimation("WallRunRight");
+        }
     }
 
     private void FixedUpdate()

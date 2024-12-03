@@ -12,6 +12,7 @@ public class ComboManager2 : MonoBehaviour
     [SerializeField] private int maxComboInputs;
     [SerializeField] private TextMeshProUGUI textInput;
     [SerializeField] private TextMeshProUGUI secondsText;
+    [SerializeField] private TextMeshProUGUI kk;
     [SerializeField] private string currentInput;
     private List<string> comboList = new List<string>();
     private List<int> playerInput = new List<int>();
@@ -291,6 +292,10 @@ public class ComboManager2 : MonoBehaviour
     {
         if (playerTurn && GameManager.GetInstance().GetGameState() != GAME_STATE.EXPLORATION)
         {
+            if (combatUI == null)
+            {
+                return;
+            }
             //Debug.Log("HOLAAAAA");
             postProcessingVolume.SetActive(true);
             Time.timeScale = 0.5f;

@@ -926,6 +926,7 @@ MonoBehaviour:
   wallRunSpeed: 8
   runAcceleration: 50
   runSpeed: 18
+  modelo: {fileID: 0}
   happy: 0
   playerHeight: 2.3
   whatIsGround:
@@ -1082,6 +1083,9 @@ MonoBehaviour:
   wallcheckDisance: 0.7
   minJumpHeight: 2
   playerHeight: 2.3
+  animationController: {fileID: 0}
+  wallLeft: 0
+  wallRight: 0
   useGravity: 1
   gravityCounterForce: 9
   orientation: {fileID: 8484117669344470279}
@@ -4378,7 +4382,11 @@ MonoBehaviour:
   thrdPersonController: {fileID: 0}
   isplayer: 0
   particles:
+  - {fileID: 7364936370289906279, guid: 74c549d1b06b6b140a1fd9536eea637f, type: 3}
+  - {fileID: 5416272393665673852, guid: 8436419d5cd706242bb810378b8a8835, type: 3}
   - {fileID: 258295244375626962, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
+  - {fileID: 3477272991562575618, guid: 6c21e7a6e514dd9499418cbbb66211cf, type: 3}
+  - {fileID: 1231740799838009829, guid: 87167b19fb4a32a4e8e4f2c5f40a40b3, type: 3}
   objectToDeactivate: {fileID: 0}
 --- !u!1001 &4619185495950846859
 PrefabInstance:

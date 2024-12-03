@@ -86,6 +86,10 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
+        if (thirdPersonController == null)
+        {
+            return;
+        }
         GameManager.GetInstance().ChangeGameState(GAME_STATE.ATTACK_STATE);
         Vector3 direction = thirdPersonController.transform.position - transform.position;
         direction.y = 0;
