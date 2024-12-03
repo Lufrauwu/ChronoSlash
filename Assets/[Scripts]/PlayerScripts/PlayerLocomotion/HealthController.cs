@@ -14,12 +14,14 @@ public class HealthController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged.Invoke(currentHealth, true);
     }
 
     public void Heal(int healthToHeal)
     {
         currentHealth += healthToHeal;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged.Invoke(currentHealth, false);
     }
     

@@ -28,7 +28,11 @@ public class HealthBarController : MonoBehaviour
                 healthImages[i].fillAmount = 1;
             }
         }
-        healthImages[roundedIndex].fillAmount = Mathf.Clamp(residue, 0,1);;
+        if (percentage < 100)
+        {
+            healthImages[roundedIndex].fillAmount = Mathf.Clamp(residue, 0,1);;
+        }
+        
     }
     
     private void OnEnable()
