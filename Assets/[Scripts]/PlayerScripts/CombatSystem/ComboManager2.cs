@@ -278,20 +278,7 @@ public class ComboManager2 : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition; // Asegura la posición final exacta
-
-        // Rotación
-       // Quaternion startRotation = transform.rotation;
-        //Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
-        //float lookElapsedTime = 0f;
-
-       /* while (lookElapsedTime < lookDuration)
-        {
-            // Interpola la rotación usando Slerp
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, lookElapsedTime / lookDuration);
-            lookElapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = targetRotation; // Asegura la rotación final exacta*/
+        
     }
 
     public void DeactivatePostProcessVolume()
@@ -299,9 +286,9 @@ public class ComboManager2 : MonoBehaviour
         postProcessingVolume.SetActive(false);
     }
 
-    private void ResetVariables()
+    public void ResetVariables()
     {
-        if (playerTurn)
+        if (playerTurn && GameManager.GetInstance().GetGameState() != GAME_STATE.EXPLORATION)
         {
             //Debug.Log("HOLAAAAA");
             postProcessingVolume.SetActive(true);
@@ -319,6 +306,18 @@ public class ComboManager2 : MonoBehaviour
         currentEnergy = maxEnergy;
         currentTimer = 5;
 //        Debug.Log("CurrentlyReseting");
+    }
+
+    public void SetAllToDefault()
+    {
+        InputManager.GetInstance().DeactivateCombat();
+        playerTurn = true;
+        textInput.text = "";
+        playerInput.Clear();
+        currentInput = "";
+        currentEnergy = maxEnergy;
+        currentTimer = 5;
+
     }
 
     private void FindAttack()

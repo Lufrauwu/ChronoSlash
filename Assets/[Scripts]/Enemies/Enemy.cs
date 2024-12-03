@@ -72,11 +72,11 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+        thirdPersonController.isInCombat = false;
         InputManager.GetInstance().DeactivateCombat();
         CameraController.GetInstance().SetLockOff();
         thirdPersonController.ResetEnemy();
-        thirdPersonController.isInCombat = false;
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
 
     public void TakeDamage(int damage)
