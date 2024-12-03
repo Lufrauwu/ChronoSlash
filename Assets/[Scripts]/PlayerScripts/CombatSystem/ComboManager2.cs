@@ -92,8 +92,17 @@ public class ComboManager2 : MonoBehaviour
     {
         playerTurn = true;
         SubscribeToGameState();
-        string[] combos = File.ReadAllLines("Assets/combos.txt");
-        comboList.AddRange(combos);
+        string path = Path.Combine(Application.streamingAssetsPath, "combos.txt");
+        if (File.Exists(path))
+        {
+            string[] combos = File.ReadAllLines(path);
+            comboList.AddRange(combos);
+        }
+        else
+        {
+            Debug.LogError("El archivo combos no se encontró en StreamingAssets.");
+        }
+        //comboList.AddRange(combos);
         currentEnergy = maxEnergy;
         currentTimer = maxTimeInSeconds; 
     }
