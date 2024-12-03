@@ -31,49 +31,65 @@ public class AttackTriggerer : MonoBehaviour
         {
             case "000000":
               // Debug.Log("hOLA");
-              _animController.ChangeAnimation("A_00000");
+              _animController.ChangeAnimation("A_000000");
               _enemy.TakeDamage(20);
                combo = "";
                 break;
             case "001100":
-                Debug.Log("SON 5");
+                _animController.ChangeAnimation("A_001100");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "000111":
-                Debug.Log("SON 4");
-                break;
-            case "111000":
-                break;
+                _animController.ChangeAnimation("A_000111");
+                _enemy.TakeDamage(20);
+                combo = "";                break;
             case "110011":
-                break;
-            case "100010":
+                _animController.ChangeAnimation("A_110011");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "111111":
+                _animController.ChangeAnimation("A_111111");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "00000":
+                _animController.ChangeAnimation("A_00000");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "00011":
+                _animController.ChangeAnimation("A_00011");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "11000":
-                break;
-            case "11100":
-                break;
-            case "11111":
+                _animController.ChangeAnimation("A_11000");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "0000":
-                break;
-            case "0001":
-                break;
-            case "0011":
+                _animController.ChangeAnimation("A_0000");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;
             case "0101":
+                _animController.ChangeAnimation("A_0101");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break; 
             case "1000":
+                _animController.ChangeAnimation("A_1000");
+                _enemy.TakeDamage(20);
+                combo = "";
                 break;  
             case "1100":
-                Debug.Log("SI");
+                _animController.ChangeAnimation("A_1100");
+                _enemy.TakeDamage(20);
+                combo = "";                
                 break;
-            case "1110":
-                break;
+            
             
 
             

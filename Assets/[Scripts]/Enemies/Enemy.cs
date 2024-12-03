@@ -72,11 +72,11 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
+        thirdPersonController.isInCombat = false;
         InputManager.GetInstance().DeactivateCombat();
         CameraController.GetInstance().SetLockOff();
         thirdPersonController.ResetEnemy();
-        thirdPersonController.isInCombat = false;
-        GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
 
     public void TakeDamage(int damage)
@@ -86,6 +86,10 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
+        if (thirdPersonController == null)
+        {
+            return;
+        }
         GameManager.GetInstance().ChangeGameState(GAME_STATE.ATTACK_STATE);
         Vector3 direction = thirdPersonController.transform.position - transform.position;
         direction.y = 0;
