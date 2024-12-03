@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Collectible
   - Water
+  - MedKit
+  - Energy_Upgrade
+  - Life_Upgrade
   layers:
   - Default
   - TransparentFX
