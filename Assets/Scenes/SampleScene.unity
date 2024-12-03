@@ -11923,6 +11923,11 @@ PrefabInstance:
       propertyPath: explorePostProcessingVolume
       value: 
       objectReference: {fileID: 832575517}
+    - target: {fileID: 1165029879552430709, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
+        type: 3}
+      propertyPath: currentHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1404791212444121504, guid: 1a0e6cbfaa4cb9e4bb8c661982a38eaa,
         type: 3}
       propertyPath: lockCamera
