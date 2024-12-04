@@ -26,6 +26,27 @@ public class SoundManager : MonoBehaviour
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
 
+    #region Singletone
+    private static SoundManager Instance;
+    public static SoundManager GetInstance()
+    {
+        return Instance;
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
+    
     private void Start()
     {
 

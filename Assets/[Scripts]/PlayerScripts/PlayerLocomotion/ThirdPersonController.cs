@@ -129,10 +129,8 @@ public class ThirdPersonController : MonoBehaviour
             else
             {
                 //Time.timeScale = 1;
-                Debug.Log("Game Resumed");
-                InputManager.GetInstance().DeactivateCombat();
-                CinemachineSwitcher.GetInstance().ResumeGame();
-                pause.SetActive(false);
+                ResumePause();
+                
             }
         }
 
@@ -290,6 +288,14 @@ public class ThirdPersonController : MonoBehaviour
     public void ResetEnemy()
     {
         targetEnemy = null;
+    }
+
+    public void ResumePause()
+    {
+        Debug.Log("Game Resumed");
+        InputManager.GetInstance().DeactivateCombat();
+        CinemachineSwitcher.GetInstance().ResumeGame();
+        pause.SetActive(false);
     }
     
     

@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         }
         if (other.tag == "Player")
         {
+            SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().CombatMusic);
             InputManager.GetInstance().ActivateCombat();
             CameraController.GetInstance().SetLockOn();
             healthController = other.GetComponent<HealthController>();

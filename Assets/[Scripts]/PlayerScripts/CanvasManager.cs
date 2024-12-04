@@ -7,6 +7,7 @@ public class CanvasManager : MonoBehaviour
 {
     public GameObject[] canvases; // Array de todos los canvases
     public GameObject firstButton; 
+    public EnableNavigation enableNavigation;
     
     #region Singletone
     private static CanvasManager Instance;
@@ -31,12 +32,12 @@ public class CanvasManager : MonoBehaviour
 
     private void OnEnable()
     {
-        firstButton = GameObject.FindGameObjectWithTag("FirstButton");
     }
 
     public void SwitchCanvas(int index)
     {
-        
+        firstButton = enableNavigation.firstButton;
+
         // Desactiva todos los canvases
         foreach (GameObject canvas in canvases)
         {

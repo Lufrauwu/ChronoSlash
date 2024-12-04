@@ -33,66 +33,79 @@ public class AttackTriggerer : MonoBehaviour
                Debug.Log("hOLA");
               _animController.ChangeAnimation("A_000000");
               _enemy.TakeDamage(20);
+               SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack3);
                combo = "";
                 break;
             case "001100":
                 _animController.ChangeAnimation("A_001100");
                 _enemy.TakeDamage(20);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack3);
                 combo = "";
                 break;
             case "000111":
                 _animController.ChangeAnimation("A_000111");
                 _enemy.TakeDamage(20);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack2);
                 combo = "";                
                 break;
             case "110011":
                 _animController.ChangeAnimation("A_110011");
                 _enemy.TakeDamage(20);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack);
                 combo = "";
                 break;
             case "111111":
                 _animController.ChangeAnimation("A_111111");
                 _enemy.TakeDamage(20);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack3);
                 combo = "";
                 break;
             case "00000":
                 _animController.ChangeAnimation("A_00000");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(13);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack2);
                 combo = "";
                 break;
             case "00011":
                 _animController.ChangeAnimation("A_00011");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(13);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack);
                 combo = "";
                 break;
             case "11000":
                 _animController.ChangeAnimation("A_11000");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(13);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack3);
                 combo = "";
                 break;
             case "0000":
                 _animController.ChangeAnimation("A_0000");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(10);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack2);
                 combo = "";
                 break;
             case "0101":
                 _animController.ChangeAnimation("A_0101");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(10);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack);
                 combo = "";
                 break; 
             case "1000":
                 _animController.ChangeAnimation("A_1000");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(10);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack3);
                 combo = "";
                 break;  
             case "1100":
                 _animController.ChangeAnimation("A_1100");
-                _enemy.TakeDamage(20);
+                _enemy.TakeDamage(10);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack2);
                 combo = "";                
                 break;
             case "null":
                 _animController.ChangeAnimation("A_null");
                 _enemy.TakeDamage(1);
+                SoundManager.GetInstance().PlaySFX(SoundManager.GetInstance().Attack);
                 Debug.Log("Default");
                 combo = "";                
                 break;
