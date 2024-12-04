@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AguaKill : MonoBehaviour
 {
+    public HealthController healthController;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,9 @@ public class AguaKill : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag== "Player")
+        if(other.gameObject.tag == "Player")
         {
-            Destroy(other.gameObject);
+            healthController.TakeDamage(int.MaxValue);
         }
     }
 }
