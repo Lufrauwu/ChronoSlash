@@ -141,14 +141,14 @@ public class ThirdPersonController : MonoBehaviour
         
         MovePlayer();
         
-        if (!isInCombat)
+        /*if (!isInCombat)
         {
             InputManager.GetInstance().DeactivateCombat();
         }
         else
         {
             InputManager.GetInstance().ActivateCombat();
-        }
+        }*/
         
     }
 

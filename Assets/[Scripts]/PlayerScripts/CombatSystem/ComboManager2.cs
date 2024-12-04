@@ -67,6 +67,7 @@ public class ComboManager2 : MonoBehaviour
                 }
                 else
                 {
+                    InputManager.GetInstance().DeactivateInputs();
                     EnemyAttack();
                 }
                 //El codigo para cambiar el estado a el turno del jugador esta en Enemy.cs
@@ -146,7 +147,7 @@ public class ComboManager2 : MonoBehaviour
             
         }
 
-        if ( currentEnergy <= 0 || currentGameState == GAME_STATE.ATTACK_STATE && playerInput.Count < maxComboInputs)
+        if (currentGameState == GAME_STATE.ATTACK_STATE && playerInput.Count < maxComboInputs)
         {
             CheckIncompleteCombo();
             
