@@ -7,18 +7,18 @@ using UnityEngine.InputSystem.Utilities;
 
 public class InputManager : MonoBehaviour
 {
-    
+
     #region Singletone
     private static InputManager Instance;
-    public static InputManager GetInstance() 
-    { 
+    public static InputManager GetInstance()
+    {
         return Instance;
     }
     #endregion
-    
-    public PlayerControls playerControls { get; private set;}
 
-    [Header("InputActions")] 
+    public PlayerControls playerControls { get; private set; }
+
+    [Header("InputActions")]
     private InputAction moveInput;
     private InputAction cameraLookInput;
     private InputAction jumpInput;
@@ -26,7 +26,8 @@ public class InputManager : MonoBehaviour
     private InputAction heavyAttack;
     private InputAction combatMovement;
     private InputAction pauseInput;
-    
+    private InputAction healInputE;
+
     [Header("Read values")] 
     private Vector2 vectorMovementValue = default;
     private Vector2 vectorCameraValue = default;
@@ -55,13 +56,15 @@ public class InputManager : MonoBehaviour
         jumpInput.Enable();
         pauseInput = playerControls.PlayerLocomotion.Pause;
         pauseInput.Enable();
+        healInputE = playerControls.PlayerLocomotion.Heal;
+        healInputE.Enable();
         lightAttack = playerControls.Combat.LightAttack;
         lightAttack.Disable();
         heavyAttack = playerControls.Combat.HeavyAttack;
         heavyAttack.Disable();
         combatMovement = playerControls.Combat.Movement;
         combatMovement.Disable();
-        
+
     }
 
     private void FixedUpdate()
@@ -121,6 +124,7 @@ public class InputManager : MonoBehaviour
         playerControls.Combat.Enable();
         playerControls.PlayerLocomotion.Disable();
         playerControls.PlayerLocomotion.Movement.Enable();
+        playerControls.PlayerLocomotion.Heal.Enable();
 
     }
 
@@ -137,6 +141,8 @@ public class InputManager : MonoBehaviour
 
     }
 
-   
- 
+    public bool HealInput()
+    {
+        return healInputE.triggered;
+    }
 }
