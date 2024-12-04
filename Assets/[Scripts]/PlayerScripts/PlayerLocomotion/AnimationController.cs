@@ -37,7 +37,7 @@ public class AnimationController : MonoBehaviour
     {
         if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"
             || currentAnimation == "A_00000" || currentAnimation == "A_00011" || currentAnimation == "A_11000" || currentAnimation == "A_001100" || currentAnimation == "A_000111" 
-            || currentAnimation == "A_110011" || currentAnimation == "A_111111" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight")
+            || currentAnimation == "A_110011" || currentAnimation == "A_111111"|| currentAnimation == "A_null" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight")
         {
             return;
         }
@@ -144,6 +144,7 @@ public class AnimationController : MonoBehaviour
 
     public void SpawnParticles(int index)
     {
-        particleInstance = Instantiate(particles[index], transform.position, Quaternion.identity);
+        Vector3 spawnPosition = transform.position + Vector3.up;
+        particleInstance = Instantiate(particles[index], spawnPosition , transform.rotation);
     }
 }

@@ -1120,6 +1120,7 @@ MonoBehaviour:
   maxComboInputs: 6
   textInput: {fileID: 0}
   secondsText: {fileID: 0}
+  kk: {fileID: 0}
   currentInput: 
   maxEnergy: 100
   currentEnergy: 0
@@ -1742,7 +1743,7 @@ Transform:
   m_GameObject: {fileID: 4718006004521998776}
   serializedVersion: 2
   m_LocalRotation: {x: 0.110990204, y: 0.0000000074050717, z: -8.2699997e-10, w: 0.99382156}
-  m_LocalPosition: {x: 0, y: 2.0000005, z: -4.8600006}
+  m_LocalPosition: {x: 241.19, y: 7.0000005, z: 493.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2548,7 +2549,7 @@ Transform:
   m_GameObject: {fileID: 5832704372247269614}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.402, y: -14.225, z: 0}
+  m_LocalPosition: {x: 0, y: -1.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4383,10 +4384,18 @@ MonoBehaviour:
   isplayer: 0
   particles:
   - {fileID: 7364936370289906279, guid: 74c549d1b06b6b140a1fd9536eea637f, type: 3}
+  - {fileID: 2629628210209888467, guid: ca6705a3f9070d14d819d179493bcfa0, type: 3}
+  - {fileID: 1379504315796101638, guid: 3407e378c048bb5438424b28c7740b48, type: 3}
+  - {fileID: 2929425121346758057, guid: 4aa9f30a28a77224ba84b2a2c334c71b, type: 3}
+  - {fileID: 1231740799838009829, guid: 87167b19fb4a32a4e8e4f2c5f40a40b3, type: 3}
   - {fileID: 5416272393665673852, guid: 8436419d5cd706242bb810378b8a8835, type: 3}
   - {fileID: 258295244375626962, guid: 3fee2e03e4bdc854bb38f7bcbca7c75d, type: 3}
   - {fileID: 3477272991562575618, guid: 6c21e7a6e514dd9499418cbbb66211cf, type: 3}
-  - {fileID: 1231740799838009829, guid: 87167b19fb4a32a4e8e4f2c5f40a40b3, type: 3}
+  - {fileID: 322485791207682088, guid: df9374346b76e444dbbb2b019de4da25, type: 3}
+  - {fileID: 5826632143261002119, guid: 000832214335ffd4782827d2a4510f4a, type: 3}
+  - {fileID: 5826632143261002119, guid: 000832214335ffd4782827d2a4510f4a, type: 3}
+  - {fileID: 6516556913553462587, guid: 8a43d9f68490c374a93a9e8085555c02, type: 3}
+  - {fileID: 5473588508934549075, guid: 035ce8c9cfc34104991ce416daf8aebe, type: 3}
   objectToDeactivate: {fileID: 0}
 --- !u!1001 &4619185495950846859
 PrefabInstance:

@@ -30,7 +30,7 @@ public class AttackTriggerer : MonoBehaviour
         switch (combo)
         {
             case "000000":
-              // Debug.Log("hOLA");
+               Debug.Log("hOLA");
               _animController.ChangeAnimation("A_000000");
               _enemy.TakeDamage(20);
                combo = "";
@@ -43,7 +43,8 @@ public class AttackTriggerer : MonoBehaviour
             case "000111":
                 _animController.ChangeAnimation("A_000111");
                 _enemy.TakeDamage(20);
-                combo = "";                break;
+                combo = "";                
+                break;
             case "110011":
                 _animController.ChangeAnimation("A_110011");
                 _enemy.TakeDamage(20);
@@ -87,6 +88,12 @@ public class AttackTriggerer : MonoBehaviour
             case "1100":
                 _animController.ChangeAnimation("A_1100");
                 _enemy.TakeDamage(20);
+                combo = "";                
+                break;
+            case "null":
+                _animController.ChangeAnimation("A_null");
+                _enemy.TakeDamage(1);
+                Debug.Log("Default");
                 combo = "";                
                 break;
             
