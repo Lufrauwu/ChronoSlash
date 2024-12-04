@@ -37,7 +37,8 @@ public class AnimationController : MonoBehaviour
     {
         if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"
             || currentAnimation == "A_00000" || currentAnimation == "A_00011" || currentAnimation == "A_11000" || currentAnimation == "A_001100" || currentAnimation == "A_000111" 
-            || currentAnimation == "A_110011" || currentAnimation == "A_111111"|| currentAnimation == "A_null" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight")
+            || currentAnimation == "A_110011" || currentAnimation == "A_111111"|| currentAnimation == "A_null" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight"
+            || currentAnimation == "Death_anim")
         {
             return;
         }
