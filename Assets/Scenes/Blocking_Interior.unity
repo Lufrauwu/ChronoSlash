@@ -1043,8 +1043,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8693144804996578944, guid: 54fe0384cc83fca47a1e6f4328d89b2f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 283841301}
+    - targetCorrespondingSourceObject: {fileID: -8693144804996578944, guid: 54fe0384cc83fca47a1e6f4328d89b2f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 283841300}
   m_SourcePrefab: {fileID: 100100000, guid: 54fe0384cc83fca47a1e6f4328d89b2f, type: 3}
+--- !u!1 &283841299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8693144804996578944, guid: 54fe0384cc83fca47a1e6f4328d89b2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 283841298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &283841300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283841299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2e05657ad60a04aa9465a8986e0be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &283841301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283841299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0000020657844, y: 7.3100038, z: 3.4000006}
+  m_Center: {x: 0, y: 0, z: 1.7}
 --- !u!1001 &317819381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5163,6 +5210,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483547896470794060, guid: 6524b7e3e37f3ef4d8994fe5c00b41be,
+        type: 3}
+      propertyPath: Gate
+      value: 
+      objectReference: {fileID: 283841299}
     - target: {fileID: 4809177242693154628, guid: 6524b7e3e37f3ef4d8994fe5c00b41be,
         type: 3}
       propertyPath: m_Name
