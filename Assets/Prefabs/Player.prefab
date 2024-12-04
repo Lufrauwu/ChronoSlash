@@ -794,6 +794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8745270259206904779}
   - component: {fileID: 1998109257496621745}
+  - component: {fileID: 7617846085369331307}
   m_Layer: 0
   m_Name: State-Driven Camera
   m_TagString: Untagged
@@ -842,9 +843,17 @@ MonoBehaviour:
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
-  - {fileID: 4007464633434357321}
-  - {fileID: 6560625850821296015}
-  m_Instructions: []
+  - {fileID: 0}
+  - {fileID: 0}
+  m_Instructions:
+  - m_FullHash: -1827147157
+    m_VirtualCamera: {fileID: 6560625850821296015}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: 1683913685
+    m_VirtualCamera: {fileID: 4007464633434357321}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 0.5
@@ -855,7 +864,32 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
-  m_ParentHash: []
+  m_ParentHash:
+  - m_Hash: 2008688535
+    m_ParentHash: 756556552
+  - m_Hash: -196554753
+    m_ParentHash: 756556552
+  - m_Hash: -167160951
+    m_ParentHash: 756556552
+  - m_Hash: -1827147157
+    m_ParentHash: 756556552
+  - m_Hash: 1683913685
+    m_ParentHash: 756556552
+--- !u!114 &7617846085369331307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029272639040925545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3e753c84133ac44b4095825427f73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuCanvas: {fileID: 0}
+  settingsCanvas: {fileID: 0}
+  pauseCanvas: {fileID: 3826405921725659734}
 --- !u!1 &3129845451345450918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1124,7 @@ MonoBehaviour:
   orientation: {fileID: 2076053420343878044}
   comboManager2: {fileID: 423236301758921779}
   pause: {fileID: 0}
+  paused: 0
   wallrunning: 0
 --- !u!114 &1165029879552430709
 MonoBehaviour:
@@ -5522,6 +5557,12 @@ PrefabInstance:
 --- !u!224 &510565711273455964 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8772507515304012267, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9127619778558630071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3826405921725659734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5454367388117607137, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
     type: 3}
   m_PrefabInstance: {fileID: 9127619778558630071}
   m_PrefabAsset: {fileID: 0}

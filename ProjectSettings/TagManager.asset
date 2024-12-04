@@ -10,6 +10,7 @@ TagManager:
   - MedKit
   - Energy_Upgrade
   - Life_Upgrade
+  - FirstButton
   layers:
   - Default
   - TransparentFX

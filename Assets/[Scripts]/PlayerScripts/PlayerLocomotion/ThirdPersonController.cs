@@ -120,6 +120,7 @@ public class ThirdPersonController : MonoBehaviour
             {
                 GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
                 InputManager.GetInstance().DeactivateExploring();
+                CanvasManager.GetInstance().SwitchCanvas(0);
                 Debug.Log("Game Paused");
                 pause.SetActive(true);
                 CinemachineSwitcher.GetInstance().PauseCanvas();
