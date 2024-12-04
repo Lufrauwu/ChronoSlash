@@ -38,6 +38,8 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Transform orientation;
 
     [SerializeField] private ComboManager2 comboManager2;
+    [SerializeField] private GameObject pause;
+    private bool paused;
 
     private PLAYER_STATES currenPlayerState;
     
@@ -109,6 +111,22 @@ public class ThirdPersonController : MonoBehaviour
         {
             comboManager2.SetAllToDefault();
             GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+        }
+
+        if (InputManager.GetInstance().PauseInput())
+        {
+            paused = true;
+            Time.timeScale = 0;
+            Debug.Log("PAUSE");
+            InputManager.GetInstance().DeactivateExploring();
+            pause.SetActive(true);
+        }
+
+        if (InputManager.GetInstance().PauseInput() && paused == true)
+        {
+            InputManager.GetInstance().DeactivateCombat();
+            Time.timeScale = 1;
+            pause.SetActive(false);
         }
         //Debug.Log("ESTA EN COMBATE " + isInCombat);
        /* if (InputManager.GetInstance().PauseInput())
