@@ -6,8 +6,11 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private int currentHealth = 100;
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private AnimationController animationController;
+    [SerializeField] private GameObject Button;
     public Action<float, bool> OnHealthChanged;
     public float MedKits = 0;
+    public bool isDead = false;
 
     public int MaxHeal;
 
@@ -20,6 +23,7 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
+        Death();
         MaxHeal = (maxHealth / 2);
         if(InputManager.GetInstance().HealInput() && MedKits >= 1)
         {
@@ -45,6 +49,17 @@ public class HealthController : MonoBehaviour
     public float GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void Death()
+    {
+        if (currentHealth <= 0)
+        {
+            animationController.ChangeAnimation("Death_anim");
+            //InputManager.GetInstance().DeactivateInputs();
+            isDead = true;
+            Button.SetActive(true);
+        }
     }
 
     public float GetMaxHealth()

@@ -28,6 +28,7 @@ public class CinemachineSwitcher : MonoBehaviour
 
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private GameObject settingsCanvas;
+    [SerializeField] private GameObject pauseCanvas;
     private Animator animator;
     private bool panoramicCamera = true;
     
@@ -61,6 +62,26 @@ public class CinemachineSwitcher : MonoBehaviour
         settingsCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         panoramicCamera = !panoramicCamera;
+    }
+
+    public void PauseCanvas()
+    {
+        animator.Play("Pause");
+        pauseCanvas.SetActive(true);    
+        panoramicCamera = !panoramicCamera;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        animator.Play("Resume");
+        pauseCanvas.SetActive(false);
+        panoramicCamera = !panoramicCamera;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 
     public void ExitGame()
