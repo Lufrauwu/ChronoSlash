@@ -35,17 +35,31 @@ public class AnimationController : MonoBehaviour
 
     private void CheckAnimation()
     {
-        if (currentAnimation == "A_00000")
+        if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"
+            || currentAnimation == "A_00000" || currentAnimation == "A_00011" || currentAnimation == "A_11000" || currentAnimation == "A_001100" || currentAnimation == "A_000111" 
+            || currentAnimation == "A_110011" || currentAnimation == "A_111111" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight")
         {
             return;
         }
-        if (InputManager.GetInstance().MovementInput().y == 1)
+        if (GameManager.GetInstance().currentGameState == GAME_STATE.EXPLORATION && InputManager.GetInstance().MovementInput().magnitude != 0 )
         {
             ChangeAnimation("Run_anim");
         }
         else if (InputManager.GetInstance().MovementInput().y == -1)
         {
             ChangeAnimation("Walk_Backward_anim");
+        }
+        else if (InputManager.GetInstance().MovementInput().y == 1)
+        {
+            ChangeAnimation("Enfrente");
+        }
+        else if (InputManager.GetInstance().MovementInput().x == -1)
+        {
+            ChangeAnimation("izquierda");
+        }
+        else if (InputManager.GetInstance().MovementInput().x == 1)
+        {
+            ChangeAnimation("derecha");
         }
         else
         {
@@ -128,8 +142,8 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
-    public void SpawnParticles()
+    public void SpawnParticles(int index)
     {
-        particleInstance = Instantiate(particles[0], transform.position, Quaternion.identity);
+        particleInstance = Instantiate(particles[index], transform.position, Quaternion.identity);
     }
 }

@@ -12,6 +12,7 @@ public class ComboManager2 : MonoBehaviour
     [SerializeField] private int maxComboInputs;
     [SerializeField] private TextMeshProUGUI textInput;
     [SerializeField] private TextMeshProUGUI secondsText;
+    [SerializeField] private TextMeshProUGUI kk;
     [SerializeField] private string currentInput;
     private List<string> comboList = new List<string>();
     private List<int> playerInput = new List<int>();
@@ -91,8 +92,17 @@ public class ComboManager2 : MonoBehaviour
     {
         playerTurn = true;
         SubscribeToGameState();
-        string[] combos = File.ReadAllLines("Assets/combos.txt");
-        comboList.AddRange(combos);
+        string path = Path.Combine(Application.streamingAssetsPath, "combos.txt");
+        if (File.Exists(path))
+        {
+            string[] combos = File.ReadAllLines(path);
+            comboList.AddRange(combos);
+        }
+        else
+        {
+            Debug.LogError("El archivo combos no se encontró en StreamingAssets.");
+        }
+        //comboList.AddRange(combos);
         currentEnergy = maxEnergy;
         currentTimer = maxTimeInSeconds; 
     }
@@ -154,7 +164,8 @@ public class ComboManager2 : MonoBehaviour
     {
          currentInput = string.Join("", playerInput);
        // bool foundMatch = false; 
-        textInput.text = currentInput;
+       string promptInput = currentInput.Replace("0","a").Replace("1", "b");
+       textInput.text = promptInput;
 
         if (playerInput.Count == maxComboInputs)
         {
@@ -278,20 +289,7 @@ public class ComboManager2 : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition; // Asegura la posición final exacta
-
-        // Rotación
-       // Quaternion startRotation = transform.rotation;
-        //Quaternion targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
-        //float lookElapsedTime = 0f;
-
-       /* while (lookElapsedTime < lookDuration)
-        {
-            // Interpola la rotación usando Slerp
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, lookElapsedTime / lookDuration);
-            lookElapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = targetRotation; // Asegura la rotación final exacta*/
+        
     }
 
     public void DeactivatePostProcessVolume()
@@ -299,10 +297,14 @@ public class ComboManager2 : MonoBehaviour
         postProcessingVolume.SetActive(false);
     }
 
-    private void ResetVariables()
+    public void ResetVariables()
     {
-        if (playerTurn)
+        if (playerTurn && GameManager.GetInstance().GetGameState() != GAME_STATE.EXPLORATION)
         {
+            if (combatUI == null)
+            {
+                return;
+            }
             //Debug.Log("HOLAAAAA");
             postProcessingVolume.SetActive(true);
             Time.timeScale = 0.5f;
@@ -319,6 +321,18 @@ public class ComboManager2 : MonoBehaviour
         currentEnergy = maxEnergy;
         currentTimer = 5;
 //        Debug.Log("CurrentlyReseting");
+    }
+
+    public void SetAllToDefault()
+    {
+        InputManager.GetInstance().DeactivateCombat();
+        playerTurn = true;
+        textInput.text = "";
+        playerInput.Clear();
+        currentInput = "";
+        currentEnergy = maxEnergy;
+        currentTimer = 5;
+
     }
 
     private void FindAttack()

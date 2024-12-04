@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -20,6 +21,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float wallRunSpeed;
     [SerializeField] private float runAcceleration = .25f;
     [SerializeField] private float runSpeed = 4f;
+    [SerializeField] private GameObject modelo;
     public bool happy;
 
     Vector3 moveDirection;
@@ -90,6 +92,11 @@ public class ThirdPersonController : MonoBehaviour
             targetEnemy = other.transform;
             SetTargetGroup.GetInstance().ChangeTargetGroup();
         }
+
+        if (other.tag == "Exit")
+        {
+            LevelManager.GetInstance().SwitchScene("Blocking_Exterior");
+        }
     }
 
     private void Update()
@@ -97,6 +104,12 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        modelo.transform.position = transform.position;
+        if (!isInCombat)
+        {
+            comboManager2.SetAllToDefault();
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
+        }
         //Debug.Log("ESTA EN COMBATE " + isInCombat);
        /* if (InputManager.GetInstance().PauseInput())
         {
