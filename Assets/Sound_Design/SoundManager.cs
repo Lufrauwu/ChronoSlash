@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource SFXSource;
     [SerializeField] AudioMixer mixer;
+    public SoundManager instance;
 
     [Header("Audio Clip")]
     public AudioClip CombatMusic;
@@ -26,6 +27,13 @@ public class SoundManager : MonoBehaviour
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
     private void Start()
     {
 
