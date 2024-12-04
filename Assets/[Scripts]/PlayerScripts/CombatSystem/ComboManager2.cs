@@ -26,6 +26,7 @@ public class ComboManager2 : MonoBehaviour
     private int heavyAttackDamage = 30;
     [SerializeField] private Enemy currentEnemy;
     [SerializeField] private AttackTriggerer attackTriggerer;
+    private bool isExecutingCombo = false;
     
     [Header("UI Elements")]
     [SerializeField] private GameObject combatUI;
@@ -120,6 +121,8 @@ public class ComboManager2 : MonoBehaviour
     void Update()
     {
         Debug.Log("El turno es: " + playerTurn);
+        string promptInput = currentInput.Replace("0","a").Replace("1", "b");
+        textInput.text = promptInput;
         progressBar.fillAmount = (float)currentEnergy / maxEnergy;
         if (InputManager.GetInstance().LightAttack() && playerInput.Count < maxComboInputs)
         {
@@ -143,7 +146,7 @@ public class ComboManager2 : MonoBehaviour
             
         }
 
-        if (currentEnergy <= lightAttackCost || currentEnergy <= 0 || currentGameState == GAME_STATE.ATTACK_STATE && playerInput.Count < maxComboInputs)
+        if ( currentEnergy <= 0 || currentGameState == GAME_STATE.ATTACK_STATE && playerInput.Count < maxComboInputs)
         {
             CheckIncompleteCombo();
             
@@ -164,8 +167,7 @@ public class ComboManager2 : MonoBehaviour
     {
          currentInput = string.Join("", playerInput);
        // bool foundMatch = false; 
-       string promptInput = currentInput.Replace("0","a").Replace("1", "b");
-       textInput.text = promptInput;
+       
 
         if (playerInput.Count == maxComboInputs)
         {
@@ -178,7 +180,11 @@ public class ComboManager2 : MonoBehaviour
     }
 
     void CheckIncompleteCombo()
-    { 
+    {
+        if (isExecutingCombo)
+        {
+            return;
+        }
         currentInput = string.Join("", playerInput);
         bool foundMatch = false; 
         textInput.text = currentInput;
@@ -194,6 +200,8 @@ public class ComboManager2 : MonoBehaviour
                 {
                     Debug.Log("Combo incompleto ejecutado: " + combo);
                     attackTriggerer.ChooseAnimation(combo);
+                    isExecutingCombo = true;
+                    MoveTowardsTarget(currentEnemy.transform);
                     playerInput.Clear();
                     currentEnergy = maxEnergy;
                     //GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
@@ -206,6 +214,9 @@ public class ComboManager2 : MonoBehaviour
         if (!foundMatch)
         {
             Debug.Log("Combo incompleto no válido");
+            attackTriggerer.ChooseAnimation("null");
+            isExecutingCombo = true;
+            MoveTowardsTarget(currentEnemy.transform);
             playerInput.Clear();
             currentEnergy = maxEnergy;
            // GameManager.GetInstance().ChangeGameState(GAME_STATE.ENEMYTURN);
@@ -223,9 +234,9 @@ public class ComboManager2 : MonoBehaviour
             
                 if (attackToExecute == combo)
                 {
-                    Debug.Log("PIO PIO");
 
                     Debug.Log("Combo ejecutado: " + combo);
+                    isExecutingCombo = true;
                     MoveTowardsTarget(currentEnemy.transform);
                     attackTriggerer.ChooseAnimation(combo);
                     return;
@@ -236,6 +247,9 @@ public class ComboManager2 : MonoBehaviour
         if (playerInput.Count >= maxComboInputs && !foundMatch)
         {
             Debug.Log("Combo no válido");
+            attackTriggerer.ChooseAnimation("null");
+            isExecutingCombo = true;
+            MoveTowardsTarget(currentEnemy.transform);
             playerInput.Clear();
             currentEnergy = maxEnergy;
 
@@ -314,6 +328,8 @@ public class ComboManager2 : MonoBehaviour
             currentInput = "";
             currentEnergy = maxEnergy;
             currentTimer = 5;
+            isExecutingCombo = false;
+
         }
         textInput.text = "";
         playerInput.Clear();
