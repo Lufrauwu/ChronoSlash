@@ -39,7 +39,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private ComboManager2 comboManager2;
     [SerializeField] private GameObject pause;
-    private bool paused;
+    private bool paused = false;
 
     private PLAYER_STATES currenPlayerState;
     
@@ -115,19 +115,26 @@ public class ThirdPersonController : MonoBehaviour
 
         if (InputManager.GetInstance().PauseInput())
         {
-            paused = true;
-            Time.timeScale = 0;
-            Debug.Log("PAUSE");
-            InputManager.GetInstance().DeactivateExploring();
-            pause.SetActive(true);
+            paused = !paused; // Alterna entre true y false
+
+            if (paused)
+            {
+                InputManager.GetInstance().DeactivateExploring();
+                Debug.Log("Game Paused");
+                pause.SetActive(true);
+                CinemachineSwitcher.GetInstance().PauseCanvas();
+                //Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Debug.Log("Game Resumed");
+                InputManager.GetInstance().DeactivateCombat();
+                pause.SetActive(false);
+            }
         }
 
-        if (InputManager.GetInstance().PauseInput() && paused == true)
-        {
-            InputManager.GetInstance().DeactivateCombat();
-            Time.timeScale = 1;
-            pause.SetActive(false);
-        }
+        
         //Debug.Log("ESTA EN COMBATE " + isInCombat);
        /* if (InputManager.GetInstance().PauseInput())
         {
