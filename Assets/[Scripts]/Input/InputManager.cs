@@ -141,6 +141,11 @@ public class InputManager : MonoBehaviour
 
     }
 
+    public void DeactivateExploring()
+    {
+        playerControls.PlayerLocomotion.Disable();
+    }
+
     public bool HealInput()
     {
         return healInputE.triggered;

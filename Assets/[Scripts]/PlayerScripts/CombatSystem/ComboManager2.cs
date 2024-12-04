@@ -42,6 +42,7 @@ public class ComboManager2 : MonoBehaviour
 
     [SerializeField] private GameObject postProcessingVolume;
     [SerializeField] private GameObject explorePostProcessingVolume;
+    [SerializeField] private HealthController healthController;
     
     private void SubscribeToGameState()
     {
@@ -85,6 +86,8 @@ public class ComboManager2 : MonoBehaviour
                 GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
                 //playerTurn = !playerTurn;
                 break;
+            case GAME_STATE.PAUSE:
+                break;
             
         }
     }
@@ -121,6 +124,11 @@ public class ComboManager2 : MonoBehaviour
 
     void Update()
     {
+        if (healthController.isDead)
+        {
+            Time.timeScale = 0;
+            return;
+        }
         Debug.Log("El turno es: " + playerTurn);
         string promptInput = currentInput.Replace("0","a").Replace("1", "b");
         textInput.text = promptInput;
