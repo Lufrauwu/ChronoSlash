@@ -20,7 +20,7 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        MaxHeal = (maxHealth /= 2);
+        MaxHeal = (maxHealth / 2);
         if(InputManager.GetInstance().HealInput() && MedKits >= 1)
         {
             Heal(MaxHeal);
