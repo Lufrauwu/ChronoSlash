@@ -296,6 +296,7 @@ public class ThirdPersonController : MonoBehaviour
         InputManager.GetInstance().DeactivateCombat();
         CinemachineSwitcher.GetInstance().ResumeGame();
         pause.SetActive(false);
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
     
     

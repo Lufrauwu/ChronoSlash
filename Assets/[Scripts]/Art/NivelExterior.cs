@@ -9,6 +9,7 @@ public class NivelExterior : MonoBehaviour
     public List<GameObject> ObjetosJugador = new List<GameObject>();
 
     public bool NivelTerminado = false;
+    [SerializeField] private GameObject Nivelganaste;
 
 
 
@@ -25,6 +26,11 @@ public class NivelExterior : MonoBehaviour
         {
             NivelTerminado = true;
             print (NivelTerminado);
+        }
+
+        if (NivelTerminado)
+        {
+            Nivelganaste.SetActive(true);
         }
     }
     private void OnTriggerEnter(Collider other)

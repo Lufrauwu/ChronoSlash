@@ -8,6 +8,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private AnimationController animationController;
     [SerializeField] private GameObject Button;
+    [SerializeField] private GameObject mainCnavas;
     public Action<float, bool> OnHealthChanged;
     public float MedKits = 0;
     public bool isDead = false;
@@ -58,7 +59,9 @@ public class HealthController : MonoBehaviour
             animationController.ChangeAnimation("Death_anim");
             //InputManager.GetInstance().DeactivateInputs();
             isDead = true;
+            mainCnavas.SetActive(false);
             Button.SetActive(true);
+            
         }
     }
 

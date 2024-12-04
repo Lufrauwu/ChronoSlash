@@ -939,6 +939,9 @@ MonoBehaviour:
   enemyType: 0
   animator: {fileID: 3449604686375993774}
   comboManager2: {fileID: 0}
+  Gate: {fileID: 0}
+  canvas: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!114 &3166198504932368714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +956,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3449604686375993774}
   postProcessingVolume: {fileID: 0}
+  thrdPersonController: {fileID: 0}
+  isplayer: 0
+  particles: []
+  objectToDeactivate: {fileID: 0}
 --- !u!95 &3449604686375993774
 Animator:
   serializedVersion: 5

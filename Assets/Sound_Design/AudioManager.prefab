@@ -41,7 +41,8 @@ AudioSource:
   m_GameObject: {fileID: 1256969051613942599}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3291694897871191701, guid: 69e9290dbc03edc49a40be06c85228b8,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -174,6 +175,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc5b1b20f61bd64887b1267ebb6ffb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSource: {fileID: 1379790747204654081}
+  SFXSource: {fileID: 2822151115370538293}
+  mixer: {fileID: 24100000, guid: 69e9290dbc03edc49a40be06c85228b8, type: 2}
+  CombatMusic: {fileID: 8300000, guid: 285020a5bae6cd145af292693f78c72a, type: 3}
+  Walk: {fileID: 8300000, guid: 52e19166103e8c0449c3ccf4349f0c8a, type: 3}
+  JumpStart: {fileID: 8300000, guid: 609c15b3f58e55a42ba98591f408e835, type: 3}
+  JumpLand: {fileID: 8300000, guid: 52e19166103e8c0449c3ccf4349f0c8a, type: 3}
+  Attack: {fileID: 8300000, guid: fbc7e7119296ede4b988db9624911adc, type: 3}
+  Attack2: {fileID: 8300000, guid: 98aecb8486ff81140b81c6ea83e30eef, type: 3}
+  Attack3: {fileID: 8300000, guid: 24915be9e2ba24141875d06d33c8fdd2, type: 3}
+  Wind: {fileID: 8300000, guid: bf7a38edb4f2d414b8ae3c48aadadd7e, type: 3}
+  masterVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
 --- !u!1 &7716806636359753055
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +230,8 @@ AudioSource:
   m_GameObject: {fileID: 7716806636359753055}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8419912650975594593, guid: 69e9290dbc03edc49a40be06c85228b8,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

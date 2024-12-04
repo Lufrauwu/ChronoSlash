@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private ComboManager2 comboManager2;
     [SerializeField] private GameObject Gate;
+    [SerializeField] private GameObject canvas;
 
     private void Awake()
     {
@@ -86,6 +87,7 @@ public class Enemy : MonoBehaviour
         GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
         InputManager.GetInstance().DeactivateCombat();
         CameraController.GetInstance().SetLockOff();
+        canvas.SetActive(false);
         thirdPersonController.ResetEnemy();
     }
 

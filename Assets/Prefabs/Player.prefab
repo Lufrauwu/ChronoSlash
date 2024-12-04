@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 8745270259206904779}
   - component: {fileID: 1998109257496621745}
   - component: {fileID: 7617846085369331307}
+  - component: {fileID: 8920229108419752954}
   m_Layer: 0
   m_Name: State-Driven Camera
   m_TagString: Untagged
@@ -864,17 +865,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
-  m_ParentHash:
-  - m_Hash: 2008688535
-    m_ParentHash: 756556552
-  - m_Hash: -196554753
-    m_ParentHash: 756556552
-  - m_Hash: -167160951
-    m_ParentHash: 756556552
-  - m_Hash: -1827147157
-    m_ParentHash: 756556552
-  - m_Hash: 1683913685
-    m_ParentHash: 756556552
+  m_ParentHash: []
 --- !u!114 &7617846085369331307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +880,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuCanvas: {fileID: 0}
   settingsCanvas: {fileID: 0}
-  pauseCanvas: {fileID: 3826405921725659734}
+  pauseCanvas: {fileID: 7465092967270418917}
+--- !u!95 &8920229108419752954
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029272639040925545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb6c2f71f93f67d4a8046c29233773b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3129845451345450918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1154,7 @@ MonoBehaviour:
   maxHealth: 100
   animationController: {fileID: 0}
   Button: {fileID: 0}
+  mainCnavas: {fileID: 0}
   MedKits: 0
   isDead: 0
   MaxHeal: 0
@@ -5560,9 +5573,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9127619778558630071}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3826405921725659734 stripped
+--- !u!1 &7465092967270418917 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5454367388117607137, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
+  m_CorrespondingSourceObject: {fileID: 1815662397058879826, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
     type: 3}
   m_PrefabInstance: {fileID: 9127619778558630071}
   m_PrefabAsset: {fileID: 0}
