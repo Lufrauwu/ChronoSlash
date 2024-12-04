@@ -78,6 +78,10 @@ public class HealthController : MonoBehaviour
             MedKits += 1;
             other.gameObject.SetActive(false);
         }
+        if(other.gameObject.tag == "Water")
+        {
+            TakeDamage(maxHealth);
+        }
     }
 
 }

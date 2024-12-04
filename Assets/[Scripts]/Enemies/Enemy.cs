@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ENEMY_TYPE enemyType;
     [SerializeField] private Animator animator;
     [SerializeField] private ComboManager2 comboManager2;
+    [SerializeField] private GameObject Gate;
 
     private void Awake()
     {
@@ -64,11 +65,19 @@ public class Enemy : MonoBehaviour
     {
         if (currentHealth<= 0)
         {
-            this.gameObject.SetActive(false);
+            Death();
         }
 
         
         
+    }
+    private void Death()
+    {
+        this.gameObject.SetActive(false);
+        if(Gate.gameObject != null)
+        {
+            Gate.SetActive(false);
+        }
     }
 
     private void OnDisable()
