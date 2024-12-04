@@ -86,6 +86,8 @@ public class ComboManager2 : MonoBehaviour
                 GameManager.GetInstance().ChangeGameState(GAME_STATE.START_TURN);
                 //playerTurn = !playerTurn;
                 break;
+            case GAME_STATE.PAUSE:
+                break;
             
         }
     }

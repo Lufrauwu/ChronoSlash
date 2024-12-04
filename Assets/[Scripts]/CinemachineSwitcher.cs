@@ -71,6 +71,19 @@ public class CinemachineSwitcher : MonoBehaviour
         panoramicCamera = !panoramicCamera;
     }
 
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        animator.Play("Resume");
+        pauseCanvas.SetActive(false);
+        panoramicCamera = !panoramicCamera;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
     public void ExitGame()
     {
         Application.Quit();

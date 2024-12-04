@@ -39,7 +39,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private ComboManager2 comboManager2;
     [SerializeField] private GameObject pause;
-    private bool paused = false;
+    public bool paused = false;
 
     private PLAYER_STATES currenPlayerState;
     
@@ -110,7 +110,6 @@ public class ThirdPersonController : MonoBehaviour
         if (!isInCombat)
         {
             comboManager2.SetAllToDefault();
-            GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
         }
 
         if (InputManager.GetInstance().PauseInput())
@@ -119,6 +118,7 @@ public class ThirdPersonController : MonoBehaviour
 
             if (paused)
             {
+                GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
                 InputManager.GetInstance().DeactivateExploring();
                 Debug.Log("Game Paused");
                 pause.SetActive(true);
@@ -127,9 +127,10 @@ public class ThirdPersonController : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
                 Debug.Log("Game Resumed");
                 InputManager.GetInstance().DeactivateCombat();
+                CinemachineSwitcher.GetInstance().ResumeGame();
                 pause.SetActive(false);
             }
         }

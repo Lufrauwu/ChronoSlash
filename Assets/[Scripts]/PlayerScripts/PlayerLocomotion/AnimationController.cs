@@ -26,15 +26,20 @@ public class AnimationController : MonoBehaviour
     void Update()
     {
         //animator.SetFloat("Velocity", InputManager.GetInstance().MovementInput().magnitude);
-        if (isplayer && thrdPersonController.isInCombat == false)
+        if (isplayer && thrdPersonController.isInCombat == false && thrdPersonController.paused == false)
         {
             GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
         }
+        
         CheckAnimation();
     }
 
     private void CheckAnimation()
     {
+        if (GameManager.GetInstance().currentGameState == GAME_STATE.PAUSE)
+        {
+            return;
+        }
         if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"
             || currentAnimation == "A_00000" || currentAnimation == "A_00011" || currentAnimation == "A_11000" || currentAnimation == "A_001100" || currentAnimation == "A_000111" 
             || currentAnimation == "A_110011" || currentAnimation == "A_111111"|| currentAnimation == "A_null" || currentAnimation == "WallRunLeft" || currentAnimation == "WallRunRight"
