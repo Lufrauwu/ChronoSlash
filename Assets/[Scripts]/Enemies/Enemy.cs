@@ -83,6 +83,10 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
+        if (canvas == null)
+        {
+            return;
+        }
         thirdPersonController.isInCombat = false;
         GameManager.GetInstance().ChangeGameState(GAME_STATE.END_TURN);
         InputManager.GetInstance().DeactivateCombat();

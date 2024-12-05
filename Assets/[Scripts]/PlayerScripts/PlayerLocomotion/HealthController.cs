@@ -60,8 +60,7 @@ public class HealthController : MonoBehaviour
             //InputManager.GetInstance().DeactivateInputs();
             isDead = true;
             mainCnavas.SetActive(false);
-            Button.SetActive(true);
-            
+            CanvasController.GetInstance().OpenDeathCanvas();            
         }
     }
 

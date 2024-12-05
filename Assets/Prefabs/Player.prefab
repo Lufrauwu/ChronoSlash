@@ -5252,11 +5252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause_Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 5454367388117607137, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5493591160201461795, guid: ab6415cf7dc3b4d4e861b6748abcb34a,
         type: 3}
       propertyPath: m_AnchorMax.y

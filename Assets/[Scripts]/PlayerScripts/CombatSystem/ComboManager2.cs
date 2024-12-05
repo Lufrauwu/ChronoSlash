@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -324,7 +325,7 @@ public class ComboManager2 : MonoBehaviour
     {
         if (playerTurn && GameManager.GetInstance().GetGameState() != GAME_STATE.EXPLORATION)
         {
-            if (combatUI == null)
+            if (combatUI == null || postProcessingVolume == null)
             {
                 return;
             }
@@ -370,8 +371,12 @@ public class ComboManager2 : MonoBehaviour
 
     private void EnemyAttack()
     {
+        if (currentEnemy == null)
+        {
+            return;
+        }
 //        Debug.Log("ATAQUEEEEE");
-        currentEnemy.Attack();
+            currentEnemy.Attack();
     }
 
     private void ActivateCombatUI()

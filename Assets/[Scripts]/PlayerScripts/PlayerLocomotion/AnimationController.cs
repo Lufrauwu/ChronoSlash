@@ -38,6 +38,7 @@ public class AnimationController : MonoBehaviour
     {
         if (GameManager.GetInstance().currentGameState == GAME_STATE.PAUSE)
         {
+            ChangeAnimation("Idle_anim");
             return;
         }
         if (currentAnimation == "A_000000" || currentAnimation == "A_0000" || currentAnimation == "A_0101" || currentAnimation == "A_1000" || currentAnimation == "A_1100"

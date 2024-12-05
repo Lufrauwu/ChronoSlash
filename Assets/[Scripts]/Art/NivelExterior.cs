@@ -30,7 +30,7 @@ public class NivelExterior : MonoBehaviour
 
         if (NivelTerminado)
         {
-            Nivelganaste.SetActive(true);
+            CanvasController.GetInstance().OpenWinCanvas();
         }
     }
     private void OnTriggerEnter(Collider other)

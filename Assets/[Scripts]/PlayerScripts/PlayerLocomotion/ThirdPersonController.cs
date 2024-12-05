@@ -73,6 +73,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.freezeRotation = true;
+        Time.timeScale = 1;
         
         ResetJump();
     }
@@ -106,6 +107,7 @@ public class ThirdPersonController : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        Debug.Log("El time es " + Time.timeScale);
         modelo.transform.position = transform.position;
         if (!isInCombat && !paused)
         {
@@ -115,16 +117,10 @@ public class ThirdPersonController : MonoBehaviour
 
         if (InputManager.GetInstance().PauseInput())
         {
-            paused = !paused; // Alterna entre true y false
 
-            if (paused)
+            if (!paused)
             {
-                GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
-                InputManager.GetInstance().DeactivateExploring();
-                CanvasManager.GetInstance().SwitchCanvas(0);
-                Debug.Log("Game Paused");
-                pause.SetActive(true);
-                CinemachineSwitcher.GetInstance().PauseCanvas();
+                Pause();
                 //Time.timeScale = 0;
             }
             else
@@ -291,12 +287,23 @@ public class ThirdPersonController : MonoBehaviour
         targetEnemy = null;
     }
 
+    public void Pause()
+    {
+        GameManager.GetInstance().ChangeGameState(GAME_STATE.PAUSE);
+        paused = true;
+        InputManager.GetInstance().SetPause();
+        CanvasController.GetInstance().OpenPauseMenu();
+        Debug.Log("Game Paused");
+        CinemachineSwitcher.GetInstance().PauseCanvas();
+    }
+
     public void ResumePause()
     {
+        paused = false;
         Debug.Log("Game Resumed");
         InputManager.GetInstance().DeactivateCombat();
         CinemachineSwitcher.GetInstance().ResumeGame();
-        pause.SetActive(false);
+        CanvasController.GetInstance().CloseAllMenus();
         GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
     }
     

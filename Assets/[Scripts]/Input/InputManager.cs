@@ -146,6 +146,12 @@ public class InputManager : MonoBehaviour
         playerControls.PlayerLocomotion.Disable();
     }
 
+    public void SetPause()
+    {
+        playerControls.PlayerLocomotion.Disable();
+        pauseInput.Enable();
+    }
+
     public bool HealInput()
     {
         return healInputE.triggered;

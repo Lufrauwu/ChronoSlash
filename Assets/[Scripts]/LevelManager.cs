@@ -29,8 +29,19 @@ public class LevelManager : MonoBehaviour
     
     public void SwitchScene(string sceneName)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 
+    public void RestartLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
    
 }
