@@ -209,31 +209,35 @@ public class ThirdPersonController : MonoBehaviour
 
     private void MovePlayer()
     {
+        Vector3 moveDir;
 
         if (targetEnemy != null)
         {
             Vector3 toEnemy = (targetEnemy.position - transform.position).normalized;
-            Vector3 enemyRight = Vector3.Cross(Vector3.up, toEnemy);  
-            moveDirection = toEnemy * verticalInput + enemyRight * horizontalInput;
+            Vector3 enemyRight = Vector3.Cross(Vector3.up, toEnemy);
+            moveDir = toEnemy * verticalInput + enemyRight * horizontalInput;
         }
         else
         {
-            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            //animator.SetFloat("Velocity", moveDirection.magnitude);
+            moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
         }
 
-        moveDirection = moveDirection.normalized;
-        
+        moveDir = moveDir.normalized;
+
+        // Raycast para ajustar la dirección en pendientes
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight * 0.5f + 0.3f, whatIsGround))
+        {
+            // Ajustar la dirección al plano de la pendiente
+            moveDir = Vector3.ProjectOnPlane(moveDir, hit.normal).normalized;
+        }
+
         if (grounded)
         {
-            _collider.material = null;
-            rigidBody.AddForce(moveDirection * runSpeed * 10f * Time.fixedUnscaledDeltaTime, ForceMode.Force );
+            rigidBody.AddForce(moveDir * runSpeed * 10f * Time.fixedDeltaTime, ForceMode.Force);
         }
         else if (!grounded)
         {
-           _collider.material = groundedMaterial;
-            Vector3 airMoveDirection = moveDirection * 7 * 10f * airMultiplier;
-            rigidBody.AddForce(airMoveDirection, ForceMode.Force);
+            rigidBody.AddForce(moveDir * 7 * 10f * airMultiplier, ForceMode.Force);
         }
     }
     
@@ -260,6 +264,11 @@ public class ThirdPersonController : MonoBehaviour
                 Debug.Log("caca");
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, 7.5f, rigidBody.velocity.z);
             }*/
+        }
+        if (flatVel.magnitude > runSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * runSpeed;
+            rigidBody.velocity = new Vector3(limitedVel.x, rigidBody.velocity.y, limitedVel.z);
         }
         
     }

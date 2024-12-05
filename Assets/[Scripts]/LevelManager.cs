@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
+
+    [SerializeField] private Animator transition;   
     
     public void SwitchScene(string sceneName)
     {

@@ -171,6 +171,7 @@ public class WallRunning : MonoBehaviour
     private void StopWallRunning()
     {
         thirdPersonController.wallrunning = false;
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
         //PlayerStates.GetInstance().ChangePlayerState(PLAYER_STATES.WALKING);
 
     }
