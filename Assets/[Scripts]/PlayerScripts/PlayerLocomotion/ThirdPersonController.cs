@@ -107,9 +107,10 @@ public class ThirdPersonController : MonoBehaviour
         SpeedControl();
         StateHandler();
         modelo.transform.position = transform.position;
-        if (!isInCombat)
+        if (!isInCombat && !paused)
         {
             comboManager2.SetAllToDefault();
+            GameManager.GetInstance().ChangeGameState(GAME_STATE.EXPLORATION);
         }
 
         if (InputManager.GetInstance().PauseInput())
